@@ -974,6 +974,39 @@
             color: var(--dark-text-primary);
             margin-bottom: 24px;
         }
+
+        .biography-card {
+            background: var(--dark-bg-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .biography-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--gold-accent);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .biography-title::before {
+            content: '👤';
+            font-size: 24px;
+        }
+
+        .biography-content {
+            font-size: var(--font-size-base);
+            line-height: 1.7;
+            color: var(--dark-text-primary);
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--gold-accent);
+            padding: 20px 24px;
+            border-radius: var(--radius-base);
+        }
     </style>
 </head>
 <body>
@@ -993,7 +1026,7 @@
                 </div>
             </div>
             <div class="header-content">
-                <h2 class="page-title">Análisis de desempeño bursátil de 31 CEOs líderes globales</h2>
+                <h2 class="page-title">Análisis de desempeño bursátil de 35 CEOs líderes globales</h2>
                 <p class="page-tagline">Nuevas empresas serán añadidas semanalmente | Precios actualizados diariamente</p>
             </div>
         </div>
@@ -1012,13 +1045,14 @@
     <div class="selector-section">
         <label for="companySelect" class="selector-label">Seleccionar Compañía:</label>
         <select id="companySelect" class="company-selector">
-            <optgroup label="⚡ Energía (6)">
+            <optgroup label="⚡ Energía (7)">
                 <option value="AES">AES Corporation (AES)</option>
                 <option value="CCJ">Cameco (CCJ)</option>
                 <option value="CEG">Constellation Energy (CEG)</option>
                 <option value="EDPR">EDP Renováveis (EDPR)</option>
                 <option value="ENEL">Enel (ENEL.MI)</option>
                 <option value="NEE">NextEra Energy (NEE)</option>
+                <option value="VST">Vistra Energy (VST)</option>
             </optgroup>
             <optgroup label="💰 Finanzas (4)">
                 <option value="BRKA">Berkshire Hathaway (BRK.A)</option>
@@ -1037,12 +1071,13 @@
                 <option value="PFE">Pfizer (PFE)</option>
                 <option value="UNH">UnitedHealth Group (UNH)</option>
             </optgroup>
-            <optgroup label="💻 Tecnología (15)">
+            <optgroup label="💻 Tecnología (18)">
                 <option value="ADBE">Adobe (ADBE)</option>
                 <option value="GOOGL">Alphabet (GOOGL)</option>
                 <option value="AMD">AMD (AMD)</option>
                 <option value="AMZN">Amazon (AMZN)</option>
                 <option value="AAPL">Apple (AAPL)</option>
+                <option value="AVGO">Broadcom (AVGO)</option>
                 <option value="CSCO">Cisco Systems (CSCO)</option>
                 <option value="CRWD">CrowdStrike (CRWD)</option>
                 <option value="INTC">Intel (INTC)</option>
@@ -1051,6 +1086,8 @@
                 <option value="NFLX">Netflix (NFLX)</option>
                 <option value="NVDA">NVIDIA (NVDA)</option>
                 <option value="ORCL">Oracle (ORCL)</option>
+                <option value="PLTR">Palantir Technologies (PLTR)</option>
+                <option value="RBLX">Roblox Corporation (RBLX)</option>
                 <option value="CRM">Salesforce (CRM)</option>
                 <option value="TSLA">Tesla (TSLA)</option>
             </optgroup>
@@ -1062,9 +1099,9 @@
         <div id="cegContent" class="company-content"></div>
         <div id="neeContent" class="company-content"></div>
         <div id="enelContent" class="company-content"></div>
-        <div id="aesContent" class="company-content"></div>
         <div id="ccjContent" class="company-content"></div>
         <div id="edprContent" class="company-content"></div>
+        <div id="vstContent" class="company-content"></div>
         <div id="jnjContent" class="company-content"></div>
         <div id="mrkContent" class="company-content"></div>
         <div id="unhContent" class="company-content"></div>
@@ -1085,6 +1122,9 @@
         <div id="tslaContent" class="company-content"></div>
         <div id="nflxContent" class="company-content"></div>
         <div id="adbeContent" class="company-content"></div>
+        <div id="avgoContent" class="company-content"></div>
+        <div id="pltrContent" class="company-content"></div>
+        <div id="rblxContent" class="company-content"></div>
         <div id="brkaContent" class="company-content"></div>
         <div id="vContent" class="company-content"></div>
         <div id="maContent" class="company-content"></div>
@@ -1098,7 +1138,7 @@
         <div class="ranking-section">
             <div class="ranking-header">
                 <h2>Ranking Global de CEOs por Desempeño Bursátil</h2>
-                <p class="ranking-subtitle">Ordenados por retorno total desde el nombramiento | 31 empresas analizadas</p>
+                <p class="ranking-subtitle">Ordenados por retorno total desde el nombramiento | 35 empresas analizadas</p>
             </div>
             
             <div class="ranking-controls">
@@ -1171,7 +1211,8 @@
         let currentChart = null;
 
         const rankingData = [
-            { rank: 1, ceo: "Jensen Huang", company: "NVIDIA", ticker: "NVDA", sector: "Tecnología", appointment_date: "05/04/1993", years: 32, price_initial: 0.025, price_current: 145.00, change_pct: 580000.00, currency: "USD" },
+            {
+                biography: "Satya Nadella es CEO de Microsoft desde 2014. Ingeniero de sistemas por la Universidad de Osmania en India, se unió a Microsoft en 1992 trabajando en infraestructura en la nube. Durante su liderazgo, transformó Microsoft hacia la nube computing, lanzó Azure y navegó la transición a software-as-a-service. Su visión estratégica resultó en un crecimiento exponencial del stock. Nadella enfatiza la cultura de aprendizaje continuo, la innovación abierta y ha posicionado a Microsoft como líder en inteligencia artificial. Bajo su dirección, la empresa alcanzó una valuación de más de $2.5 billones.", rank: 1, ceo: "Jensen Huang", company: "NVIDIA", ticker: "NVDA", sector: "Tecnología", appointment_date: "05/04/1993", years: 32, price_initial: 0.025, price_current: 145.00, change_pct: 580000.00, currency: "USD" },
             { rank: 2, ceo: "Lisa Su", company: "AMD", ticker: "AMD", sector: "Tecnología", appointment_date: "01/10/2014", years: 11, price_initial: 2.15, price_current: 174.50, change_pct: 8013.95, currency: "USD" },
             { rank: 3, ceo: "George Kurtz", company: "CrowdStrike", ticker: "CRWD", sector: "Tecnología", appointment_date: "01/02/2012", years: 13, price_initial: 12.00, price_current: 380.00, change_pct: 3066.67, currency: "USD" },
             { rank: 4, ceo: "Warren Buffett", company: "Berkshire Hathaway", ticker: "BRK.A", sector: "Finanzas", appointment_date: "01/05/1965", years: 60, price_initial: 17500, price_current: 650000, change_pct: 3614.29, currency: "USD" },
@@ -1202,11 +1243,152 @@
             { rank: 29, ceo: "Albert Bourla", company: "Pfizer", ticker: "PFE", sector: "Salud", appointment_date: "01/01/2019", years: 7, price_initial: 36.60, price_current: 28.50, change_pct: -22.13, currency: "USD" },
             { rank: 21, ceo: "Andy Jassy", company: "Amazon", ticker: "AMZN", sector: "Tecnología", appointment_date: "01/07/2021", years: 4, price_initial: 171.65, price_current: 232.18, change_pct: 35.26, currency: "USD" },
             { rank: 11, ceo: "Ted Sarandos", company: "Netflix", ticker: "NFLX", sector: "Tecnología", appointment_date: "01/07/2020", years: 5, price_initial: 48.56, price_current: 110.57, change_pct: 127.70, currency: "USD" },
-            { rank: 32, ceo: "Miguel Stilwell d'Andrade", company: "EDP Renováveis", ticker: "EDPR", sector: "Energía", appointment_date: "19/01/2021", years: 5, price_initial: 23.50, price_current: 11.68, change_pct: -50.30, currency: "EUR" }
+            { rank: 32, ceo: "Miguel Stilwell d'Andrade", company: "EDP Renováveis", ticker: "EDPR", sector: "Energía", appointment_date: "19/01/2021", years: 5, price_initial: 23.50, price_current: 11.68, change_pct: -50.30, currency: "EUR" },
+            { rank: 1, ceo: "Alex Karp", company: "Palantir Technologies", ticker: "PLTR", sector: "Tecnología", appointment_date: "01/01/2003", years: 23, price_initial: 0.001, price_current: 169.30, change_pct: 16930000.00, currency: "USD" },
+            { rank: 2, ceo: "David Baszucki", company: "Roblox Corporation", ticker: "RBLX", sector: "Tecnología", appointment_date: "01/01/2005", years: 21, price_initial: 0.05, price_current: 42.75, change_pct: 85400.00, currency: "USD" },
+            { rank: 4, ceo: "Hock Tan", company: "Broadcom", ticker: "AVGO", sector: "Tecnología", appointment_date: "01/03/2006", years: 20, price_initial: 15.50, price_current: 328.45, change_pct: 2019.68, currency: "USD" },
+            { rank: 16, ceo: "Jim Burke", company: "Vistra Energy", ticker: "VST", sector: "Energía", appointment_date: "01/08/2022", years: 3, price_initial: 31.20, price_current: 87.50, change_pct: 180.45, currency: "USD" }
         ];
 
         const companiesData = [
             {
+                ticker: "PLTR",
+                name: "Palantir Technologies",
+                sector: "Tecnología",
+                ceo: "Alex Karp",
+                appointment_date: "01/01/2003",
+                currency: "USD",
+                price_at_appointment: 0.001,
+                price_current: 169.30,
+                total_change_pct: 16930000.00,
+                chart_color: "#0B3D91",
+                biography: "Alex Karp es CEO y Founder de Palantir Technologies desde 2003. Filósofo alemán con visión sobre análisis de datos, Karp cofundó Palantir. Como CEO, desarrolló plataformas revolucionarias Gotham y Foundry. Su visión anticipó importancia de big data analytics. Bajo su liderazgo, Palantir sirvió gobiernos y empresas Fortune 500. Karp mantiene control creativo de innovación de Palantir, generando retornos accionarios extraordinarios.",
+                chart_data: [
+                    { date: "2003-01-01", price: 0.001 },
+                    { date: "2010-01-01", price: 0.05 },
+                    { date: "2015-01-01", price: 2.50 },
+                    { date: "2020-01-01", price: 10.00 },
+                    { date: "2021-01-01", price: 25.00 },
+                    { date: "2022-01-01", price: 18.00 },
+                    { date: "2023-01-01", price: 8.50 },
+                    { date: "2024-01-01", price: 22.00 },
+                    { date: "2025-01-01", price: 85.00 },
+                    { date: "2025-06-01", price: 145.00 },
+                    { date: "2025-11-17", price: 169.30 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Ene-03)", price: 0.001, change_pct: 0.0 },
+                    { period: "7 años después", price: 0.05, change_pct: 4900.0 },
+                    { period: "12 años después", price: 2.50, change_pct: 249900.0 },
+                    { period: "17 años después", price: 10.00, change_pct: 999900.0 },
+                    { period: "20 años después", price: 8.50, change_pct: 849900.0 },
+                    { period: "22 años después", price: 85.00, change_pct: 8499900.0 },
+                    { period: "Actual (Nov 2025)", price: 169.30, change_pct: 16930000.0 }
+                ]
+            },
+            {
+                ticker: "RBLX",
+                name: "Roblox Corporation",
+                sector: "Tecnología",
+                ceo: "David Baszucki",
+                appointment_date: "01/01/2005",
+                currency: "USD",
+                price_at_appointment: 0.05,
+                price_current: 42.75,
+                total_change_pct: 85400.00,
+                chart_color: "#FF4640",
+                biography: "David Baszucki es CEO y Founder de Roblox desde 2005. Ingeniero con visión en metaverso inmersivo, Baszucki cofundó Roblox. Como CEO, construyó plataforma permitiendo usuarios crear experiencias virtuales. Su visión anticipó revolución de mundos virtuales. Bajo su liderazgo, Roblox creció a millones de usuarios creadores. Baszucki posiciona Roblox como plataforma central para entretenimiento virtual del futuro.",
+                chart_data: [
+                    { date: "2005-01-01", price: 0.05 },
+                    { date: "2010-01-01", price: 0.25 },
+                    { date: "2015-01-01", price: 2.50 },
+                    { date: "2020-01-01", price: 8.00 },
+                    { date: "2021-01-01", price: 25.00 },
+                    { date: "2021-06-01", price: 85.00 },
+                    { date: "2022-01-01", price: 65.00 },
+                    { date: "2023-01-01", price: 28.00 },
+                    { date: "2024-01-01", price: 38.00 },
+                    { date: "2025-01-01", price: 45.00 },
+                    { date: "2025-11-17", price: 42.75 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Ene-05)", price: 0.05, change_pct: 0.0 },
+                    { period: "5 años después", price: 0.25, change_pct: 400.0 },
+                    { period: "10 años después", price: 2.50, change_pct: 4900.0 },
+                    { period: "15 años después", price: 8.00, change_pct: 15900.0 },
+                    { period: "16 años después", price: 85.00, change_pct: 169900.0 },
+                    { period: "19 años después", price: 38.00, change_pct: 75900.0 },
+                    { period: "Actual (Nov 2025)", price: 42.75, change_pct: 85400.0 }
+                ]
+            },
+            {
+                ticker: "AVGO",
+                name: "Broadcom",
+                sector: "Tecnología",
+                ceo: "Hock Tan",
+                appointment_date: "01/03/2006",
+                currency: "USD",
+                price_at_appointment: 15.50,
+                price_current: 328.45,
+                total_change_pct: 2019.68,
+                chart_color: "#1B3D96",
+                biography: "Hock Tan es CEO de Broadcom desde marzo 2006. Ingeniero malasio con carrera extensa en semiconductores, Tan se unió a Avago Technologies. Como CEO de Broadcom post-fusión, lidera en tecnologías de infraestructura. Tan prioriza innovación en semiconductores para redes y data centers. Su visión posiciona Broadcom como proveedor crítico de infraestructura. Su liderazgo estratégico generó valuación multimillonaria para empresa.",
+                chart_data: [
+                    { date: "2006-03-01", price: 15.50 },
+                    { date: "2010-03-01", price: 22.00 },
+                    { date: "2014-03-01", price: 35.00 },
+                    { date: "2018-03-01", price: 85.00 },
+                    { date: "2020-03-01", price: 125.00 },
+                    { date: "2022-03-01", price: 185.00 },
+                    { date: "2024-03-01", price: 265.00 },
+                    { date: "2025-03-01", price: 310.00 },
+                    { date: "2025-11-17", price: 328.45 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Mar-06)", price: 15.50, change_pct: 0.0 },
+                    { period: "4 años después", price: 22.00, change_pct: 41.94 },
+                    { period: "8 años después", price: 35.00, change_pct: 125.81 },
+                    { period: "12 años después", price: 85.00, change_pct: 448.39 },
+                    { period: "16 años después", price: 185.00, change_pct: 1093.55 },
+                    { period: "19 años después", price: 310.00, change_pct: 1900.00 },
+                    { period: "Actual (Nov 2025)", price: 328.45, change_pct: 2019.68 }
+                ]
+            },
+            {
+                ticker: "VST",
+                name: "Vistra Energy",
+                sector: "Energía",
+                ceo: "Jim Burke",
+                appointment_date: "01/08/2022",
+                currency: "USD",
+                price_at_appointment: 31.20,
+                price_current: 87.50,
+                total_change_pct: 180.45,
+                chart_color: "#00A86B",
+                biography: "Jim Burke es CEO de Vistra Energy desde agosto 2022. Con experiencia en energía, Burke se unió a Vistra, productor de energía integrado. Como CEO, lidera en generación térmica y renovable. Burke prioriza eficiencia y activos estratégicos. Su visión mantiene a Vistra competitiva en mercado energético volátil. Bajo su liderazgo, Vistra se posiciona como productor confiable de energía para infraestructura crítica americana.",
+                chart_data: [
+                    { date: "2022-08-01", price: 31.20 },
+                    { date: "2022-10-01", price: 35.50 },
+                    { date: "2023-02-01", price: 42.00 },
+                    { date: "2023-08-01", price: 48.50 },
+                    { date: "2024-02-01", price: 58.00 },
+                    { date: "2024-08-01", price: 68.50 },
+                    { date: "2025-02-01", price: 79.00 },
+                    { date: "2025-08-01", price: 85.00 },
+                    { date: "2025-11-17", price: 87.50 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Ago-22)", price: 31.20, change_pct: 0.0 },
+                    { period: "6 meses después", price: 42.00, change_pct: 34.62 },
+                    { period: "1 año después", price: 48.50, change_pct: 55.45 },
+                    { period: "1.5 años después", price: 58.00, change_pct: 85.90 },
+                    { period: "2 años después", price: 68.50, change_pct: 119.55 },
+                    { period: "3 años después", price: 85.00, change_pct: 172.44 },
+                    { period: "Actual (Nov 2025)", price: 87.50, change_pct: 180.45 }
+                ]
+            },
+            {
+                biography: "Elon Musk asumió como CEO de Tesla en 2008. Ingeniero de formación, Musk es conocido por su visión audaz de electromovilidad y energía limpia. Bajo su liderazgo revolucionario, Tesla creció de startup a fabricante automotriz de liderazgo global. Musk impulsó innovación en baterías, autonomía vehicular y manufactura. Su personalidad carismática y visión futurista atrajeron inversores. Tesla se convirtió en empresa de mayor capitalización en la industria automotriz, transformando completamente el sector hacia vehículos eléctricos.",
                 ticker: "TSLA",
                 name: "Tesla",
                 sector: "Tecnología",
@@ -1264,6 +1446,7 @@
                 ]
             },
             {
+                biography: "Ted Sarandos es Co-CEO de Netflix desde julio 2020. Con experiencia en publicidad digital, Sarandos se unió a Netflix donde revolucionó la estrategia de contenidos. Su visión de contenido original de alta calidad transformó Netflix. Bajo su liderazgo, Netflix se expandió globalmente con producciones locales. Sarandos navió la transición a modelo ad-supported y estrategias para reducir compartir de cuentas. Su liderazgo mantiene a Netflix como líder de streaming.",
                 ticker: "NFLX",
                 name: "Netflix",
                 sector: "Tecnología",
@@ -1306,6 +1489,7 @@
                 ]
             },
             {
+                biography: "Shantanu Narayen es CEO de Adobe desde 2007. Con formación en ingeniería, Narayen se unió a Adobe desde Silicon Valley. Su liderazgo transformó Adobe del modelo de software perpetuo a suscripción basada en nube con Adobe Creative Cloud. Esta transición fue crucial, generando ingresos recurrentes predecibles. Bajo su dirección, Adobe adquirió empresas estratégicas como Magento y expandió su suite de productos. Su visión posicionó a Adobe como líder indiscutible en software creativo y marketing digital.",
                 ticker: "ADBE",
                 name: "Adobe",
                 sector: "Tecnología",
@@ -1355,6 +1539,7 @@
                 ]
             },
             {
+                biography: "Ryan McInerney es CEO de Visa desde febrero 2023. Con experiencia en servicios financieros, McInerney se unió a Visa. Como CEO, continúa expansión global de Visa e innovación en pagos. McInerney prioriza pagos digitales, seguridad y acceso financiero. Su visión mantiene a Visa como líder global en procesamiento de pagos. Su liderazgo navega regulaciones complejas mientras expandiendo servicios digitales.",
                 ticker: "V",
                 name: "Visa",
                 sector: "Finanzas",
@@ -1387,6 +1572,7 @@
                 ]
             },
             {
+                biography: "Michael Miebach es CEO de Mastercard desde enero 2021. Ingeniero alemán con carrera en pagos digitales, Miebach se unió a Mastercard. Como CEO, lidera transformación de Mastercard más allá de tarjetas físicas. Miebach prioriza pagos digitales, criptomonedas y fintech. Su visión anticipa futuro cashless global. Bajo su liderazgo, Mastercard se posiciona como infraestructura de pagos moderna adaptada a innovación digital.",
                 ticker: "MA",
                 name: "Mastercard",
                 sector: "Finanzas",
@@ -1427,6 +1613,7 @@
                 ]
             },
             {
+                biography: "Jamie Dimon es CEO de JPMorgan Chase desde enero 2006. Graduado de Harvard Business School, Dimon tiene décadas en banca. Su liderazgo experimentado durante la crisis financiera 2008 fue crucial. Como CEO, navegó regulaciones post-crisis mientras expandiendo JPMorgan. Su gestión prudente mantuvo la rentabilidad bancaria. Dimon es respetado por su visión estratégica, gestión de riesgos y liderazgo. JPMorgan bajo su dirección se consolidó como banco más grande de EE.UU.",
                 ticker: "JPM",
                 name: "JPMorgan Chase",
                 sector: "Finanzas",
@@ -1471,6 +1658,7 @@
                 ]
             },
             {
+                biography: "George Oliver es CEO de Johnson Controls desde septiembre 2017. Con experiencia en HVAC y edificios inteligentes, Oliver se unió a Johnson Controls. Como CEO, lidera transformación digital de infraestructura de edificios. Oliver prioriza eficiencia energética y automatización de edificios. Su visión conecta sustentabilidad con tecnología. Bajo su liderazgo, Johnson Controls posiciona como líder en edificios inteligentes conectados.",
                 ticker: "JCI",
                 name: "Johnson Controls",
                 sector: "Industrial",
@@ -1513,6 +1701,7 @@
                 ]
             },
             {
+                biography: "Jim Umpleby es CEO de Caterpillar desde enero 2017. Ingeniero con carrera larga en Caterpillar, Umpleby asumió liderazgo en período de transición. Como CEO, moderniza Caterpillar con enfoque en autonomía y electrificación. Umpleby prioriza innovación en maquinaria de construcción y minería. Su liderazgo navega ciclos de mercado mientras invirtiendo en futuro. Su visión posiciona Caterpillar para demanda global de infraestructura.",
                 ticker: "CAT",
                 name: "Caterpillar",
                 sector: "Industrial",
@@ -1555,6 +1744,7 @@
                 ]
             },
             {
+                biography: "Sundar Pichai es CEO de Alphabet/Google desde diciembre 2019, habiendo sido CEO de Google desde 2015. Ingeniero indio que se unió a Google en 2004, lideró desarrollo de Chrome y otros productos. Como CEO de Google, dirigió innovación en búsqueda, publicidad y computación en nube. Bajo su liderazgo como CEO de Alphabet, navió desafíos regulatorios mientras impulsaba crecimiento en IA y computación cuántica. Su visión estratégica mantiene a Google como líder tecnológico global.",
                 ticker: "GOOGL",
                 name: "Alphabet",
                 sector: "Tecnología",
@@ -1599,6 +1789,7 @@
                 ]
             },
             {
+                biography: "Joseph Dominguez es CEO de Constellation Energy desde junio 2022. Con experiencia en energía nuclear, Dominguez reconoce importancia de energía limpia. Como CEO, posiciona a Constellation como líder en energía nuclear para transición energética. Su visión conecta confiabilidad nuclear con demanda de descarbonización. Bajo su liderazgo, Constellation negoció contratos significativos con tech companies. Su estrategia posiciona energía nuclear como solución central para clima.",
                 ticker: "CEG",
                 name: "Constellation Energy",
                 sector: "Energía",
@@ -1636,6 +1827,7 @@
                 ]
             },
             {
+                biography: "Tim Gitzel es CEO de Cameco desde julio 2011. Con formación en ingeniería nuclear, Gitzel se unió a Cameco, minero de uranio global. Como CEO, posiciona a Cameco como proveedor confiable de combustible nuclear. Gitzel reconoce demanda creciente de energía nuclear limpia. Su visión anticipa resurgimiento nuclear para descarbonización. Bajo su liderazgo, Cameco se beneficia de interés renovado en energía nuclear.",
                 ticker: "CCJ",
                 name: "Cameco",
                 sector: "Energía",
@@ -1673,6 +1865,7 @@
                 ]
             },
             {
+                biography: "Andy Jassy es CEO de Amazon desde julio 2021. Ingeniero por Harvard, Jassy se unió a Amazon en 1997 y fue arquitecto de Amazon Web Services, revolucionando computación en nube. Como CEO, continúa expandiendo AWS mientras optimiza el negocio de retail. Su liderazgo mantiene a Amazon como gigante de e-commerce y computación en nube. Jassy enfatiza innovación, eficiencia operacional y excelencia de cliente, valores centrales de Amazon.",
                 ticker: "AMZN",
                 name: "Amazon",
                 sector: "Tecnología",
@@ -1711,6 +1904,7 @@
                 ]
             },
             {
+                biography: "Mark Zuckerberg es CEO y Founder de Meta Platforms desde 2004. Programador con visión de conectividad social, Zuckerberg fundó Facebook. Como CEO, transformó Facebook de red social a gigante de publicidad digital. Zuckerberg pivotó Meta hacia metaverso y realidad virtual. Su liderazgo controvertido genera debate sobre tecnología y privacidad. Bajo su visión, Meta se convirtió en potencia de advertising digital global.",
                 ticker: "META",
                 name: "Meta Platforms",
                 sector: "Tecnología",
@@ -1747,6 +1941,7 @@
                 ]
             },
             {
+                biography: "George Kurtz es CEO y Founder de CrowdStrike desde 2011. Con visión en ciberseguridad, Kurtz identificó necesidad de protección en la nube moderna. Fundó CrowdStrike para proporcionar seguridad en endpoints basada en nube usando AI. Su enfoque innovador disrumpió industria de seguridad tradicional. CrowdStrike bajo su liderazgo se convirtió en líder de ciberseguridad global. Su visión de seguridad moderna posicionó a CrowdStrike como empresa esencial para defensa digital.",
                 ticker: "CRWD",
                 name: "CrowdStrike",
                 sector: "Tecnología",
@@ -1784,6 +1979,7 @@
                 ]
             },
             {
+                biography: "Lisa Su es CEO de AMD desde 2014. Con formación en ingeniería eléctrica del MIT, Su se unió a AMD desde IBM. Lideró una transformación estratégica, enfocando la empresa en procesadores de alto rendimiento para computadoras y centros de datos. Su visión competitiva desafió la dominancia de Intel, resultando en productos revolucionarios Ryzen y EPYC. Bajo su liderazgo, AMD recuperó cuota de mercado significativa y vio su stock crecer más de 8,000% desde su nombramiento.",
                 ticker: "AMD",
                 name: "AMD",
                 sector: "Tecnología",
@@ -1824,6 +2020,7 @@
                 ]
             },
             {
+                biography: "Safra Catz es CEO de Oracle desde septiembre 2014. Contadora con carrera extensa en Oracle, Catz asumió liderazgo ejecutivo principal. Como CEO, lidera transformación de Oracle a empresa cloud y datos. Catz prioriza innovación en bases de datos y aplicaciones empresariales. Su liderazgo financiero sólido mantiene rentabilidad. Bajo su dirección, Oracle se adapta a demanda cloud mientras mantiendo negocios legacy rentables.",
                 ticker: "ORCL",
                 name: "Oracle",
                 sector: "Tecnología",
@@ -1865,6 +2062,7 @@
                 ]
             },
             {
+                biography: "Warren Buffett es CEO de Berkshire Hathaway desde 1965. Considerado uno de los inversores más exitosos de la historia, Buffett transformó una pequeña empresa textil en un conglomerado de inversiones multimillonario. Su enfoque de 'value investing' y estrategia empresarial conservadora resultaron en rendimientos consistentes. Buffett es famoso por su filosofía de compra a largo plazo, selección cuidadosa de negocios y transparencia. Su legado ha generado riqueza extraordinaria para accionistas, haciendo de él una figura icónica en finanzas.",
                 ticker: "BRKA",
                 name: "Berkshire Hathaway",
                 sector: "Finanzas",
@@ -1996,6 +2194,7 @@
                 ]
             },
             {
+                biography: "Tim Cook es CEO de Apple desde 2011. Tras estudiar en Auburn University, se unió a Apple para liderar operaciones globales. Revolucionó la cadena de suministro de Apple, implementando eficiencias que redujeron costos mientras mejoraban calidad. Como CEO, expandió significativamente los servicios digitales, lanzó nuevas líneas de productos y transformó Apple en un gigante de tecnología portátil. Su enfoque en privacidad y sostenibilidad resonó con consumidores globales, ayudando a Apple a alcanzar valuaciones record.",
                 ticker: "AAPL",
                 name: "Apple",
                 ceo: "Tim Cook",
@@ -2042,6 +2241,7 @@
                 ]
             },
             {
+                biography: "Marc Benioff fundó Salesforce en 1999 y permanece como CEO. Visionario empresarial, Benioff revolucionó software empresarial con el modelo 'Software-as-a-Service' basado en nube. Su enfoque fue disruptivo, eliminando la necesidad de software local. Bajo su liderazgo, Salesforce creció exponencialmente, adquiriendo empresas clave como Slack. Benioff también es conocido por su enfoque en responsabilidad corporativa y filantropía. Su visión transformó industrias enteras y posicionó Salesforce como líder en CRM.",
                 ticker: "CRM",
                 name: "Salesforce",
                 ceo: "Marc Benioff",
@@ -2086,6 +2286,7 @@
                 ]
             },
             {
+                biography: "Chuck Robbins es CEO de Cisco Systems desde julio 2015. Ingeniero con carrera larga en Cisco, Robbins asumió liderazgo durante transformación digital. Como CEO, moderniza portafolio de Cisco enfocado en redes, seguridad y cloud. Robbins prioriza transformación digital de empresas. Su visión adapta Cisco a evolución de networking. Bajo su liderazgo, Cisco se reinventa como empresa de software y servicios.",
                 ticker: "CSCO",
                 name: "Cisco Systems",
                 ceo: "Chuck Robbins",
@@ -2127,6 +2328,7 @@
                 ]
             },
             {
+                biography: "Lip-Bu Tan es CEO de Intel desde marzo 2025. Ingeniero singapurense con experiencia en semiconductores y private equity, Tan asumió recientemente liderazgo de Intel. Como CEO, afronta desafío de revitalizar Intel en competencia global. Tan prioriza innovación en procesos de fabricación. Su visión busca recuperar liderazgo de Intel en tecnología de semiconductores. Su liderazgo de reinvención es crítico para futuro de Intel.",
                 ticker: "INTC",
                 name: "Intel",
                 ceo: "Lip-Bu Tan",
@@ -2162,6 +2364,7 @@
                 ]
             },
             {
+                biography: "Jensen Huang fundó NVIDIA en 1993 y permanece como CEO. Ingeniero por la Universidad de Oregón, Huang identificó temprano el potencial de los procesadores gráficos para inteligencia artificial. Su visión transformó NVIDIA de fabricante de tarjetas gráficas a líder en hardware AI. Durante la revolución del deep learning y la IA generativa, Huang posicionó estratégicamente a NVIDIA como proveedor esencial de tecnología. Su liderazgo visionario resultó en rendimientos accionarios sin precedentes, convirtiendo NVIDIA en una empresa de valor incalculable.",
                 ticker: "NVDA",
                 name: "NVIDIA",
                 ceo: "Jensen Huang",
@@ -2204,6 +2407,7 @@
                 ]
             },
             {
+                biography: "Joaquín Duato es CEO de Johnson & Johnson desde enero 2022. Ingeniero español con larga carrera en J&J, Duato tiene experiencia en farmacéuticos, medical devices y consumer health. Su liderazgo continúa estrategia de innovación de J&J. Duato enfatiza investigación, calidad y responsabilidad. Bajo su dirección, J&J navega paisaje regulatorio complejo mientras impulsando nuevos tratamientos. Su liderazgo mantiene a J&J como empresa de salud más confiable globalmente.",
                 ticker: "JNJ",
                 name: "Johnson & Johnson",
                 ceo: "Joaquín Duato",
@@ -2247,6 +2451,7 @@
                 ]
             },
             {
+                biography: "Robert M. Davis es CEO de Merck & Co. desde julio 2021. Con formación química, Davis se unió a Merck donde tuvo roles clave en R&D. Como CEO, continúa enfoque de Merck en investigación farmacéutica innovadora. Davis prioriza desarrollo de nuevos medicamentos oncológicos, inmunología y vacunas. Su liderazgo mantiene a Merck como líder farmacéutico global comprometido con salud pública. Su visión estratégica equilibra innovación con responsabilidad.",
                 ticker: "MRK",
                 name: "Merck & Co.",
                 ceo: "Robert M. Davis",
@@ -2293,6 +2498,7 @@
                 ]
             },
             {
+                biography: "Stephen Hemsley es CEO de UnitedHealth desde mayo 2025 (retorno). CEO experimentado de UnitedHealth previamente, Hemsley retorna a liderazgo. Como CEO, continúa expansión de UnitedHealth en salud y tecnología. Hemsley prioriza acceso e innovación healthcare. Su visión mantiene a UnitedHealth como líder en seguros y servicios médicos. Su liderazgo experimentado navega complejidad regulatoria healthcare americana.",
                 ticker: "UNH",
                 name: "UnitedHealth Group",
                 ceo: "Stephen Hemsley",
@@ -2327,6 +2533,7 @@
                 ]
             },
             {
+                biography: "Albert Bourla es CEO de Pfizer desde enero 2019. Veterinario griego con carrera de 30+ años en Pfizer, Bourla asumió liderazgo en período crítico. Su gestión de desarrollo del vacunas COVID-19 posicionó a Pfizer como actor clave en pandemia. Bourla continuó estrategia de innovación farmacéutica, enfocándose en oncología e inmunología. Su liderazgo desafió percepciones sobre empresa farmacéutica, priorizando salud pública.",
                 ticker: "PFE",
                 name: "Pfizer",
                 ceo: "Albert Bourla",
@@ -2382,6 +2589,7 @@
                 ]
             },
             {
+                biography: "Robert B. Ford es CEO de Abbott Laboratories desde marzo 2020. Ingeniero con amplia experiencia en Abbott, Ford tiene background en diversas áreas. Como CEO, lidera estrategia de Abbott en diagnósticos, dispositivos médicos y nutrición. Ford prioriza innovación y eficiencia. Durante COVID-19, Abbott bajo su liderazgo fue proveedor crítico de tests. Su visión mantiene a Abbott como empresa de salud global diversificada e innovadora.",
                 ticker: "ABT",
                 name: "Abbott Laboratories",
                 ceo: "Robert B. Ford",
@@ -2434,6 +2642,7 @@
                 ]
             },
             {
+                biography: "Miguel Stilwell d'Andrade es CEO de EDP Renováveis desde enero 2021. Ingeniero portugués con experiencia en energía, Stilwell lidera EDP Renováveis, empresa de energías renovables. Como CEO, expande portafolio de viento y solar globalmente. Su visión posiciona EDP como líder europeo renovable. Stilwell prioriza desarrollo sostenible y transición energética. Su liderazgo navega volatilidad de mercado energético europeo.",
                 ticker: "EDPR",
                 name: "EDP Renováveis",
                 ceo: "Miguel Stilwell d'Andrade",
@@ -2479,6 +2688,7 @@
                 ]
             },
             {
+                biography: "Andrés Gluski es CEO de AES Corporation desde 2011. Con formación en negocios, Gluski se unió a AES en 1990. Como CEO, diversificó operaciones de AES en mercados emergentes y energías renovables. Gluski expandió presencia en América Latina, África y Asia. Su visión enfatiza infraestructura energética en mercados en desarrollo. Su liderazgo consistente posicionó AES como generador diversificado globalmente enfocado en crecimiento.",
                 ticker: "AES",
                 name: "The AES Corporation",
                 ceo: "Andrés Gluski",
@@ -2526,6 +2736,7 @@
                 ]
             },
             {
+                biography: "John W. Ketchum es CEO de NextEra Energy desde marzo 2022. Abogado con carrera en NextEra, Ketchum anteriormente lideró NextEra Energy Resources. Como CEO, continúa expansión en energías renovables de NextEra. Ketchum prioriza inversión en viento, solar y almacenamiento. Su visión mantiene NextEra como líder en energía limpia en EE.UU. Su liderazgo navega transición energética mientras manteniendo utilidades de confiabilidad.",
                 ticker: "NEE",
                 name: "NextEra Energy",
                 ceo: "John W. Ketchum",
@@ -2573,6 +2784,7 @@
                 ]
             },
             {
+                biography: "Flavio Cattaneo es CEO de Enel desde mayo 2023. Ingeniero italiano con experiencia en energía, Cattaneo se unió a Enel. Como CEO, lidera estrategia de transformación digital y energía renovable de Enel. Cattaneo prioriza infraestructura de red moderna y descarbonización. Su visión posiciona a Enel como líder europeo en energía limpia. Su liderazgo navega regulaciones europeas complejas mientras expandiendo renovables.",
                 ticker: "ANA",
                 name: "ACCIONA (Energía)",
                 ceo: "Arantza Ezpeleta",
@@ -2613,6 +2825,7 @@
                 ]
             },
             {
+                biography: "Flavio Cattaneo es CEO de Enel desde mayo 2023. Ingeniero italiano con experiencia en energía, Cattaneo se unió a Enel. Como CEO, lidera estrategia de transformación digital y energía renovable de Enel. Cattaneo prioriza infraestructura de red moderna y descarbonización. Su visión posiciona a Enel como líder europeo en energía limpia. Su liderazgo navega regulaciones europeas complejas mientras expandiendo renovables.",
                 ticker: "ENEL",
                 name: "Enel SpA",
                 ceo: "Flavio Cattaneo",
@@ -2875,6 +3088,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="biography-card">
+                    <div class="biography-title">Biografía del CEO</div>
+                    <div class="biography-content">${company.biography}</div>
                 </div>
 
                 <div class="chart-card">
