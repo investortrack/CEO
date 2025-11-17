@@ -1,0 +1,3070 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LIDERAZGO EN MERCADOS: Análisis de Desempeño Bursátil por CEO</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --color-white: rgba(255, 255, 255, 1);
+            --color-black: rgba(0, 0, 0, 1);
+            --color-cream-50: rgba(252, 252, 249, 1);
+            --color-cream-100: rgba(255, 255, 253, 1);
+            --color-gray-200: rgba(245, 245, 245, 1);
+            --color-gray-300: rgba(167, 169, 169, 1);
+            --color-gray-400: rgba(119, 124, 124, 1);
+            --color-slate-500: rgba(98, 108, 113, 1);
+            --color-brown-600: rgba(94, 82, 64, 1);
+            --color-charcoal-700: rgba(31, 33, 33, 1);
+            --color-charcoal-800: rgba(38, 40, 40, 1);
+            --color-slate-900: rgba(19, 52, 59, 1);
+            --color-teal-300: rgba(50, 184, 198, 1);
+            --color-teal-400: rgba(45, 166, 178, 1);
+            --color-teal-500: rgba(33, 128, 141, 1);
+            --color-teal-600: rgba(29, 116, 128, 1);
+            --color-teal-700: rgba(26, 104, 115, 1);
+            --color-teal-800: rgba(41, 150, 161, 1);
+            --color-red-400: rgba(255, 84, 89, 1);
+            --color-red-500: rgba(192, 21, 47, 1);
+            --color-orange-400: rgba(230, 129, 97, 1);
+            --color-orange-500: rgba(168, 75, 47, 1);
+            --color-brown-600-rgb: 94, 82, 64;
+            --color-teal-500-rgb: 33, 128, 141;
+            --color-slate-900-rgb: 19, 52, 59;
+            --color-slate-500-rgb: 98, 108, 113;
+            --color-red-500-rgb: 192, 21, 47;
+            --color-red-400-rgb: 255, 84, 89;
+            --color-orange-500-rgb: 168, 75, 47;
+            --color-orange-400-rgb: 230, 129, 97;
+            --color-bg-1: rgba(59, 130, 246, 0.08);
+            --color-bg-2: rgba(245, 158, 11, 0.08);
+            --color-bg-3: rgba(34, 197, 94, 0.08);
+            --color-bg-4: rgba(239, 68, 68, 0.08);
+            --color-bg-5: rgba(147, 51, 234, 0.08);
+            --color-bg-6: rgba(249, 115, 22, 0.08);
+            --color-bg-7: rgba(236, 72, 153, 0.08);
+            --color-bg-8: rgba(6, 182, 212, 0.08);
+            --color-background: var(--color-cream-50);
+            --color-surface: var(--color-cream-100);
+            --color-text: var(--color-slate-900);
+            --color-text-secondary: var(--color-slate-500);
+            --color-primary: var(--color-teal-500);
+            --color-primary-hover: var(--color-teal-600);
+            --color-primary-active: var(--color-teal-700);
+            --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+            --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+            --color-btn-primary-text: var(--color-cream-50);
+            --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+            --color-error: var(--color-red-500);
+            --color-success: var(--color-teal-500);
+            --color-warning: var(--color-orange-500);
+            --color-info: var(--color-slate-500);
+            --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+            --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+            --focus-ring: 0 0 0 3px var(--color-focus-ring);
+            --focus-outline: 2px solid var(--color-primary);
+            --status-bg-opacity: 0.15;
+            --status-border-opacity: 0.25;
+            --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-family-mono: "Berkeley Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            --font-size-xs: 11px;
+            --font-size-sm: 12px;
+            --font-size-base: 14px;
+            --font-size-md: 14px;
+            --font-size-lg: 16px;
+            --font-size-xl: 18px;
+            --font-size-2xl: 20px;
+            --font-size-3xl: 24px;
+            --font-size-4xl: 30px;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 550;
+            --font-weight-bold: 600;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.5;
+            --letter-spacing-tight: -0.01em;
+            --space-0: 0;
+            --space-1: 1px;
+            --space-2: 2px;
+            --space-4: 4px;
+            --space-6: 6px;
+            --space-8: 8px;
+            --space-10: 10px;
+            --space-12: 12px;
+            --space-16: 16px;
+            --space-20: 20px;
+            --space-24: 24px;
+            --space-32: 32px;
+            --radius-sm: 6px;
+            --radius-base: 8px;
+            --radius-md: 10px;
+            --radius-lg: 12px;
+            --radius-full: 9999px;
+            --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+            --shadow-inset-sm: inset 0 1px 0 rgba(255, 255, 255, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.03);
+            --duration-fast: 150ms;
+            --duration-normal: 250ms;
+            --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+            --container-sm: 640px;
+            --container-md: 768px;
+            --container-lg: 1024px;
+            --container-xl: 1280px;
+
+            /* Custom dark theme colors */
+            --dark-bg-primary: #0a0e1a;
+            --dark-bg-secondary: #141827;
+            --dark-bg-card: #1a1f35;
+            --dark-border: rgba(255, 255, 255, 0.1);
+            --dark-text-primary: #e8eaed;
+            --dark-text-secondary: #9aa0a6;
+            --gold-accent: #d4af37;
+            --gold-accent-rgb: 212, 175, 55;
+            --green-positive: #22c55e;
+            --green-positive-rgb: 34, 197, 94;
+            --red-negative: #ef4444;
+            --red-negative-rgb: 239, 68, 68;
+            --highlight-row: rgba(212, 175, 55, 0.08);
+        }
+
+        @font-face {
+            font-family: 'FKGroteskNeue';
+            src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-family-base);
+            background: var(--dark-bg-primary);
+            color: var(--dark-text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: var(--dark-bg-secondary);
+            padding: 32px 24px;
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+
+        .brand-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            min-width: 280px;
+        }
+
+        .brand-logo {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+        }
+
+        .brand-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .brand-title {
+            font-size: 20px;
+            font-weight: var(--font-weight-bold);
+            color: var(--gold-accent);
+            letter-spacing: -0.01em;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            color: var(--dark-text-secondary);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: var(--font-weight-medium);
+        }
+
+        .header-content {
+            flex: 1;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: clamp(18px, 3vw, 28px);
+            font-weight: var(--font-weight-semibold);
+            color: var(--dark-text-primary);
+            letter-spacing: -0.01em;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+        }
+
+        .page-tagline {
+            font-size: var(--font-size-sm);
+            color: var(--dark-text-secondary);
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 32px;
+        }
+
+        @media (min-width: 1200px) {
+            .companies-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1199px) {
+            .companies-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .company-card {
+            background: var(--dark-bg-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            transition: transform 0.3s var(--ease-standard), box-shadow 0.3s var(--ease-standard);
+        }
+
+        .company-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .company-header {
+            border-bottom: 1px solid var(--dark-border);
+            padding-bottom: 24px;
+            margin-bottom: 24px;
+        }
+
+        .ticker {
+            font-size: 32px;
+            font-weight: var(--font-weight-bold);
+            color: var(--gold-accent);
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+
+        .company-name {
+            font-size: var(--font-size-lg);
+            color: var(--dark-text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .ceo-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            margin-bottom: 20px;
+        }
+
+        .ceo-label {
+            font-size: var(--font-size-sm);
+            color: var(--dark-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .ceo-name {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-medium);
+            color: var(--dark-text-primary);
+        }
+
+        .appointment-date {
+            font-size: var(--font-size-base);
+            color: var(--dark-text-secondary);
+        }
+
+        .total-change {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-base);
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .total-change-label {
+            font-size: var(--font-size-sm);
+            color: var(--dark-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 8px;
+        }
+
+        .total-change-value {
+            font-size: 40px;
+            font-weight: var(--font-weight-bold);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .total-change-value.positive {
+            color: var(--green-positive);
+        }
+
+        .total-change-value.negative {
+            color: var(--red-negative);
+        }
+
+        .arrow {
+            font-size: 32px;
+        }
+
+        .current-price {
+            font-size: var(--font-size-base);
+            color: var(--dark-text-secondary);
+            margin-top: 8px;
+        }
+
+        .current-price-value {
+            color: var(--dark-text-primary);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .timeline-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--font-size-sm);
+        }
+
+        .timeline-table thead {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .timeline-table th {
+            padding: 12px;
+            text-align: left;
+            font-weight: var(--font-weight-semibold);
+            color: var(--dark-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: var(--font-size-xs);
+            border-bottom: 1px solid var(--dark-border);
+        }
+
+        .timeline-table th:last-child {
+            text-align: right;
+        }
+
+        .timeline-table tbody tr {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background-color 0.2s var(--ease-standard);
+        }
+
+        .timeline-table tbody tr:hover {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .timeline-table tbody tr.highlight {
+            background: var(--highlight-row);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .timeline-table tbody tr.highlight:hover {
+            background: rgba(212, 175, 55, 0.12);
+        }
+
+        .timeline-table tbody tr.current-row {
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: var(--font-weight-semibold);
+        }
+
+        .timeline-table tbody tr.current-row:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .timeline-table td {
+            padding: 14px 12px;
+            color: var(--dark-text-primary);
+        }
+
+        .timeline-table td:last-child {
+            text-align: right;
+            font-weight: var(--font-weight-medium);
+        }
+
+        .period-cell {
+            color: var(--dark-text-secondary);
+        }
+
+        .highlight .period-cell {
+            color: var(--gold-accent);
+        }
+
+        .current-row .period-cell {
+            color: var(--dark-text-primary);
+        }
+
+        .price-cell {
+            font-family: var(--font-family-mono);
+            font-size: var(--font-size-sm);
+        }
+
+        .change-cell {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            font-family: var(--font-family-mono);
+        }
+
+        .change-cell.positive {
+            color: var(--green-positive);
+        }
+
+        .change-cell.negative {
+            color: var(--red-negative);
+        }
+
+        .change-cell.neutral {
+            color: var(--dark-text-secondary);
+        }
+
+        .change-arrow {
+            font-size: 10px;
+        }
+
+        .selector-section {
+            background: var(--dark-bg-secondary);
+            padding: 24px;
+            border-bottom: 1px solid var(--dark-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .selector-label {
+            font-size: var(--font-size-base);
+            color: var(--dark-text-secondary);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .company-selector {
+            min-width: 280px;
+            padding: 12px 40px 12px 16px;
+            font-size: var(--font-size-base);
+            font-family: var(--font-family-base);
+            background: var(--dark-bg-card);
+            color: var(--dark-text-primary);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-base);
+            cursor: pointer;
+            transition: all 0.2s var(--ease-standard);
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+        }
+
+        .company-selector:hover {
+            border-color: var(--gold-accent);
+            background-color: rgba(26, 31, 53, 1);
+        }
+
+        .company-selector:focus {
+            outline: none;
+            border-color: var(--gold-accent);
+            box-shadow: 0 0 0 3px rgba(var(--gold-accent-rgb), 0.2);
+        }
+
+        .company-selector option {
+            background: var(--dark-bg-card);
+            color: var(--dark-text-primary);
+            padding: 12px;
+        }
+
+        .nav-tabs {
+            background: var(--dark-bg-secondary);
+            border-bottom: 2px solid var(--dark-border);
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            padding: 0 24px;
+        }
+
+        .nav-tab {
+            background: transparent;
+            border: none;
+            padding: 18px 48px;
+            font-size: 15px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            color: var(--dark-text-secondary);
+            cursor: pointer;
+            transition: all 0.2s var(--ease-standard);
+            border-bottom: 3px solid transparent;
+            letter-spacing: 0.02em;
+            text-transform: none;
+        }
+
+        .nav-tab:hover {
+            color: var(--dark-text-primary);
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-tab.active {
+            color: var(--gold-accent);
+            border-bottom-color: var(--gold-accent);
+            font-weight: 600;
+        }
+
+        .view-container {
+            display: none;
+        }
+
+        .view-container.active {
+            display: block;
+        }
+
+        .ranking-section {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .ranking-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .ranking-header h2 {
+            font-size: var(--font-size-3xl);
+            color: var(--gold-accent);
+            margin-bottom: 8px;
+        }
+
+        .ranking-subtitle {
+            font-size: var(--font-size-base);
+            color: var(--dark-text-secondary);
+        }
+
+        .ranking-controls {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .sort-btn {
+            background: var(--dark-bg-card);
+            border: 1px solid var(--dark-border);
+            color: var(--dark-text-primary);
+            padding: 10px 20px;
+            border-radius: var(--radius-base);
+            font-size: var(--font-size-sm);
+            font-weight: var(--font-weight-medium);
+            cursor: pointer;
+            transition: all 0.2s var(--ease-standard);
+        }
+
+        .sort-btn:hover {
+            border-color: var(--gold-accent);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .sort-btn.active {
+            background: var(--gold-accent);
+            color: var(--dark-bg-primary);
+            border-color: var(--gold-accent);
+        }
+
+        .ranking-table-container {
+            background: var(--dark-bg-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            overflow-x: auto;
+        }
+
+        .ranking-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--font-size-sm);
+        }
+
+        .ranking-table thead {
+            background: rgba(255, 255, 255, 0.03);
+            position: sticky;
+            top: 0;
+        }
+
+        .ranking-table th {
+            padding: 16px 12px;
+            text-align: left;
+            font-weight: var(--font-weight-semibold);
+            color: var(--dark-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: var(--font-size-xs);
+            border-bottom: 2px solid var(--dark-border);
+        }
+
+        .ranking-table td {
+            padding: 16px 12px;
+            color: var(--dark-text-primary);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .ranking-table tbody tr {
+            transition: all 0.2s var(--ease-standard);
+            cursor: pointer;
+        }
+
+        .ranking-table tbody tr:hover {
+            background: rgba(212, 175, 55, 0.08);
+        }
+
+        .rank-col {
+            width: 60px;
+            text-align: center !important;
+        }
+
+        .rank-cell {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-bold);
+            text-align: center;
+        }
+
+        .medal {
+            font-size: 24px;
+        }
+
+        .company-col {
+            min-width: 200px;
+        }
+
+        .company-cell {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .company-ticker {
+            font-weight: var(--font-weight-bold);
+            color: var(--gold-accent);
+            font-size: var(--font-size-base);
+        }
+
+        .company-name-small {
+            color: var(--dark-text-secondary);
+            font-size: var(--font-size-xs);
+        }
+
+        .ceo-col {
+            min-width: 180px;
+        }
+
+        .date-col {
+            min-width: 120px;
+        }
+
+        .price-col {
+            text-align: right !important;
+            min-width: 100px;
+        }
+
+        .price-value {
+            font-family: var(--font-family-mono);
+            text-align: right;
+        }
+
+        .change-col {
+            text-align: right !important;
+            min-width: 120px;
+        }
+
+        .change-value {
+            font-family: var(--font-family-mono);
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-base);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+        }
+
+        .change-value.positive {
+            color: var(--green-positive);
+        }
+
+        .change-value.negative {
+            color: var(--red-negative);
+        }
+
+        .years-col {
+            text-align: center !important;
+            min-width: 80px;
+        }
+
+        .years-value {
+            text-align: center;
+        }
+
+        .sector-col {
+            min-width: 140px;
+        }
+
+        .sector-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-medium);
+            border: 1px solid;
+        }
+
+        .sector-tecnologia {
+            background: rgba(59, 130, 246, 0.15);
+            color: #60a5fa;
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        .sector-finanzas {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border-color: rgba(245, 158, 11, 0.3);
+        }
+
+        .sector-salud {
+            background: rgba(239, 68, 68, 0.15);
+            color: #f87171;
+            border-color: rgba(239, 68, 68, 0.3);
+        }
+
+        .sector-energia {
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
+            border-color: rgba(34, 197, 94, 0.3);
+        }
+
+        .sector-industrial {
+            background: rgba(147, 51, 234, 0.15);
+            color: #a78bfa;
+            border-color: rgba(147, 51, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 24px;
+                text-align: center;
+            }
+
+            .brand-section {
+                justify-content: center;
+            }
+
+            .header-content {
+                text-align: center;
+            }
+
+            .nav-tab {
+                padding: 16px 32px;
+                font-size: 14px;
+            }
+
+            .ranking-table {
+                font-size: var(--font-size-xs);
+            }
+
+            .ranking-table th,
+            .ranking-table td {
+                padding: 12px 8px;
+            }
+        }
+
+        .content-section {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        .company-content {
+            display: none;
+            animation: fadeIn 0.4s var(--ease-standard);
+        }
+
+        .company-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .summary-card {
+            background: var(--dark-bg-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media (min-width: 768px) {
+            .summary-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        .summary-left {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .summary-ticker {
+            font-size: 36px;
+            font-weight: var(--font-weight-bold);
+            color: var(--gold-accent);
+            letter-spacing: -0.02em;
+        }
+
+        .summary-company-name {
+            font-size: var(--font-size-xl);
+            color: var(--dark-text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .summary-ceo {
+            font-size: var(--font-size-base);
+            color: var(--dark-text-secondary);
+        }
+
+        .summary-ceo strong {
+            color: var(--dark-text-primary);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .summary-right {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-base);
+            padding: 24px;
+        }
+
+        .summary-change-label {
+            font-size: var(--font-size-sm);
+            color: var(--dark-text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .summary-change-value {
+            font-size: 48px;
+            font-weight: var(--font-weight-bold);
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .summary-change-value.positive {
+            color: var(--green-positive);
+        }
+
+        .summary-change-value.negative {
+            color: var(--red-negative);
+        }
+
+        .summary-prices {
+            font-size: var(--font-size-sm);
+            color: var(--dark-text-secondary);
+            text-align: center;
+        }
+
+        .summary-prices div {
+            margin-bottom: 4px;
+        }
+
+        .price-highlight {
+            color: var(--dark-text-primary);
+            font-weight: var(--font-weight-medium);
+            font-family: var(--font-family-mono);
+        }
+
+        .chart-card {
+            background: var(--dark-bg-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 32px;
+        }
+
+        .chart-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--dark-text-primary);
+            margin-bottom: 24px;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            width: 100%;
+        }
+
+        .table-card {
+            background: var(--dark-bg-card);
+            border: 1px solid var(--dark-border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+        }
+
+        .table-title {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-semibold);
+            color: var(--dark-text-primary);
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-container">
+            <div class="brand-section">
+                <svg class="brand-logo" width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="28" width="6" height="12" fill="#DAA520"/>
+                    <rect x="16" y="22" width="6" height="18" fill="#DAA520"/>
+                    <rect x="24" y="16" width="6" height="24" fill="#DAA520"/>
+                    <rect x="32" y="10" width="6" height="30" fill="#DAA520"/>
+                    <path d="M 4 40 L 44 40" stroke="#DAA520" stroke-width="2"/>
+                </svg>
+                <div class="brand-text">
+                    <h1 class="brand-title">CEO Stock Evolution</h1>
+                    <p class="brand-subtitle">Executive Performance Analytics</p>
+                </div>
+            </div>
+            <div class="header-content">
+                <h2 class="page-title">Análisis de desempeño bursátil de 31 CEOs líderes globales</h2>
+                <p class="page-tagline">Nuevas empresas serán añadidas semanalmente | Precios actualizados diariamente</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="nav-tab active" data-view="analysis" onclick="switchView('analysis')">
+            <span class="tab-text">Análisis</span>
+        </button>
+        <button class="nav-tab" data-view="ranking" onclick="switchView('ranking')">
+            <span class="tab-text">Ranking</span>
+        </button>
+    </div>
+
+    <div id="analysisView" class="view-container active">
+    <div class="selector-section">
+        <label for="companySelect" class="selector-label">Seleccionar Compañía:</label>
+        <select id="companySelect" class="company-selector">
+            <optgroup label="⚡ Energía (6)">
+                <option value="CEG">Constellation Energy (CEG)</option>
+                <option value="NEE">NextEra Energy (NEE)</option>
+                <option value="ENEL">Enel (ENEL.MI)</option>
+                <option value="AES">AES Corporation (AES)</option>
+                <option value="CCJ">Cameco (CCJ)</option>
+                <option value="EDPR">EDP Renováveis (EDPR)</option>
+            </optgroup>
+            <optgroup label="🏥 Salud (4)">
+                <option value="JNJ">Johnson &amp; Johnson (JNJ)</option>
+                <option value="MRK">Merck &amp; Co. (MRK)</option>
+                <option value="UNH">UnitedHealth Group (UNH)</option>
+                <option value="PFE">Pfizer (PFE)</option>
+                <option value="ABT">Abbott Laboratories (ABT)</option>
+            </optgroup>
+            <optgroup label="💻 Tecnología (15)">
+                <option value="MSFT">Microsoft (MSFT)</option>
+                <option value="GOOGL">Alphabet (GOOGL)</option>
+                <option value="AAPL">Apple (AAPL)</option>
+                <option value="CRM">Salesforce (CRM)</option>
+                <option value="CSCO">Cisco Systems (CSCO)</option>
+                <option value="INTC">Intel (INTC)</option>
+                <option value="NVDA">NVIDIA (NVDA)</option>
+                <option value="AMZN">Amazon (AMZN)</option>
+                <option value="META">Meta Platforms (META)</option>
+                <option value="CRWD">CrowdStrike (CRWD)</option>
+                <option value="AMD">AMD (AMD)</option>
+                <option value="ORCL">Oracle (ORCL)</option>
+                <option value="TSLA">Tesla (TSLA)</option>
+                <option value="NFLX">Netflix (NFLX)</option>
+                <option value="ADBE">Adobe (ADBE)</option>
+            </optgroup>
+            <optgroup label="💰 Finanzas (4)">
+                <option value="BRKA">Berkshire Hathaway (BRK.A)</option>
+                <option value="V">Visa (V)</option>
+                <option value="MA">Mastercard (MA)</option>
+                <option value="JPM">JPMorgan Chase (JPM)</option>
+            </optgroup>
+            <optgroup label="🏭 Industrial (2)">
+                <option value="JCI">Johnson Controls (JCI)</option>
+                <option value="CAT">Caterpillar (CAT)</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <div class="content-section">
+        <div id="cegContent" class="company-content active"></div>
+        <div id="neeContent" class="company-content"></div>
+        <div id="enelContent" class="company-content"></div>
+        <div id="aesContent" class="company-content"></div>
+        <div id="ccjContent" class="company-content"></div>
+        <div id="edprContent" class="company-content"></div>
+        <div id="jnjContent" class="company-content"></div>
+        <div id="mrkContent" class="company-content"></div>
+        <div id="unhContent" class="company-content"></div>
+        <div id="pfeContent" class="company-content"></div>
+        <div id="abtContent" class="company-content"></div>
+        <div id="msftContent" class="company-content"></div>
+        <div id="googlContent" class="company-content"></div>
+        <div id="aaplContent" class="company-content"></div>
+        <div id="crmContent" class="company-content"></div>
+        <div id="cscoContent" class="company-content"></div>
+        <div id="intcContent" class="company-content"></div>
+        <div id="nvdaContent" class="company-content"></div>
+        <div id="amznContent" class="company-content"></div>
+        <div id="metaContent" class="company-content"></div>
+        <div id="crwdContent" class="company-content"></div>
+        <div id="amdContent" class="company-content"></div>
+        <div id="orclContent" class="company-content"></div>
+        <div id="tslaContent" class="company-content"></div>
+        <div id="nflxContent" class="company-content"></div>
+        <div id="adbeContent" class="company-content"></div>
+        <div id="brkaContent" class="company-content"></div>
+        <div id="vContent" class="company-content"></div>
+        <div id="maContent" class="company-content"></div>
+        <div id="jpmContent" class="company-content"></div>
+        <div id="jciContent" class="company-content"></div>
+        <div id="catContent" class="company-content"></div>
+    </div>
+    </div>
+
+    <div id="rankingView" class="view-container">
+        <div class="ranking-section">
+            <div class="ranking-header">
+                <h2>Ranking Global de CEOs por Desempeño Bursátil</h2>
+                <p class="ranking-subtitle">Ordenados por retorno total desde el nombramiento | 31 empresas analizadas</p>
+            </div>
+            
+            <div class="ranking-controls">
+                <button class="sort-btn active" data-sort="return" onclick="sortRanking('return')">Total Return %</button>
+                <button class="sort-btn" data-sort="years" onclick="sortRanking('years')">Años en Posición</button>
+                <button class="sort-btn" data-sort="sector" onclick="sortRanking('sector')">Sector</button>
+                <button class="sort-btn" data-sort="recent" onclick="sortRanking('recent')">Últimos 6 Meses</button>
+            </div>
+
+            <div class="ranking-table-container">
+                <table class="ranking-table" id="rankingTable">
+                    <thead>
+                        <tr>
+                            <th class="rank-col">#</th>
+                            <th class="company-col">Compañía</th>
+                            <th class="ceo-col">CEO</th>
+                            <th class="date-col">Nombramiento</th>
+                            <th class="price-col">Precio Inicial</th>
+                            <th class="price-col">Precio Actual</th>
+                            <th class="change-col">Cambio Total</th>
+                            <th class="years-col">Años</th>
+                            <th class="sector-col">Sector</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rankingTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: var(--dark-bg-secondary); border-top: 1px solid var(--dark-border); padding: 48px 24px; margin-top: 60px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div style="text-align: center; margin-bottom: 32px;">
+                <h3 style="color: var(--gold-accent); font-size: var(--font-size-xl); margin-bottom: 16px;">Información del Dashboard</h3>
+            </div>
+            <div style="display: grid; grid-template-columns: 1fr; gap: 24px; font-size: var(--font-size-sm); color: var(--dark-text-secondary); line-height: 1.8;">
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: var(--radius-base); border: 1px solid var(--dark-border);">
+                    <strong style="color: var(--dark-text-primary); display: block; margin-bottom: 8px;">📊 Precios de Acciones:</strong>
+                    Los precios mostrados corresponden al <strong style="color: var(--gold-accent);">17 de Noviembre de 2025</strong>.
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: var(--radius-base); border: 1px solid var(--dark-border);">
+                    <strong style="color: var(--dark-text-primary); display: block; margin-bottom: 8px;">📏 Granularidad:</strong>
+                    Los datos se muestran en <strong style="color: var(--gold-accent);">intervalos de 6 MESES</strong> para análisis detallado de desempeño.
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: var(--radius-base); border: 1px solid var(--dark-border);">
+                    <strong style="color: var(--dark-text-primary); display: block; margin-bottom: 8px;">🔄 Actualización:</strong>
+                    Este dashboard se actualiza <strong style="color: var(--gold-accent);">semanalmente cada lunes</strong> con los precios de cierre más recientes.
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: var(--radius-base); border: 1px solid var(--dark-border);">
+                    <strong style="color: var(--dark-text-primary); display: block; margin-bottom: 8px;">📈 Datos Históricos:</strong>
+                    Los gráficos muestran la evolución del precio desde la fecha de nombramiento del CEO actual hasta la fecha indicada.
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: var(--radius-base); border: 1px solid var(--dark-border);">
+                    <strong style="color: var(--dark-text-primary); display: block; margin-bottom: 8px;">📡 Fuentes de Datos:</strong>
+                    Yahoo Finance, Bloomberg Terminal, Exchange Data - Bolsas de Valores Internacionales.
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.03); padding: 20px; border-radius: var(--radius-base); border: 1px solid var(--dark-border);">
+                    <strong style="color: var(--dark-text-primary); display: block; margin-bottom: 8px;">⚠️ Disclaimer:</strong>
+                    Este análisis es puramente informativo. No constituye asesoría financiera o recomendación de inversión. Consulte con un asesor financiero certificado antes de tomar decisiones de inversión.
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--dark-border); font-size: var(--font-size-xs); color: var(--dark-text-secondary);">
+                © 2025 Liderazgo en Mercados. Dashboard de análisis bursátil ejecutivo.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentChart = null;
+
+        const rankingData = [
+            { rank: 1, ceo: "Jensen Huang", company: "NVIDIA", ticker: "NVDA", sector: "Tecnología", appointment_date: "05/04/1993", years: 32, price_initial: 0.025, price_current: 145.00, change_pct: 580000.00, currency: "USD" },
+            { rank: 2, ceo: "Lisa Su", company: "AMD", ticker: "AMD", sector: "Tecnología", appointment_date: "01/10/2014", years: 11, price_initial: 2.15, price_current: 174.50, change_pct: 8013.95, currency: "USD" },
+            { rank: 3, ceo: "George Kurtz", company: "CrowdStrike", ticker: "CRWD", sector: "Tecnología", appointment_date: "01/02/2012", years: 13, price_initial: 12.00, price_current: 380.00, change_pct: 3066.67, currency: "USD" },
+            { rank: 4, ceo: "Warren Buffett", company: "Berkshire Hathaway", ticker: "BRK.A", sector: "Finanzas", appointment_date: "01/05/1965", years: 60, price_initial: 17500, price_current: 650000, change_pct: 3614.29, currency: "USD" },
+            { rank: 5, ceo: "Marc Benioff", company: "Salesforce", ticker: "CRM", sector: "Tecnología", appointment_date: "01/01/2001", years: 24, price_initial: 11.00, price_current: 315.00, change_pct: 2763.64, currency: "USD" },
+            { rank: 6, ceo: "Shantanu Narayen", company: "Adobe", ticker: "ADBE", sector: "Tecnología", appointment_date: "01/12/2007", years: 18, price_initial: 27.50, price_current: 525.00, change_pct: 1809.09, currency: "USD" },
+            { rank: 7, ceo: "Elon Musk", company: "Tesla", ticker: "TSLA", sector: "Tecnología", appointment_date: "01/10/2008", years: 17, price_initial: 17.40, price_current: 312.50, change_pct: 1698.28, currency: "USD" },
+            { rank: 8, ceo: "Satya Nadella", company: "Microsoft", ticker: "MSFT", sector: "Tecnología", appointment_date: "04/02/2014", years: 11, price_initial: 36.48, price_current: 510.18, change_pct: 1298.52, currency: "USD" },
+            { rank: 9, ceo: "Tim Cook", company: "Apple", ticker: "AAPL", sector: "Tecnología", appointment_date: "24/08/2011", years: 14, price_initial: 18.50, price_current: 238.00, change_pct: 1186.49, currency: "USD" },
+            { rank: 10, ceo: "Mark Zuckerberg", company: "Meta Platforms", ticker: "META", sector: "Tecnología", appointment_date: "04/02/2004", years: 21, price_initial: 100.00, price_current: 510.00, change_pct: 410.00, currency: "USD" },
+            { rank: 11, ceo: "Safra Catz", company: "Oracle", ticker: "ORCL", sector: "Tecnología", appointment_date: "01/09/2014", years: 11, price_initial: 38.50, price_current: 193.25, change_pct: 401.95, currency: "USD" },
+            { rank: 12, ceo: "Jamie Dimon", company: "JPMorgan Chase", ticker: "JPM", sector: "Finanzas", appointment_date: "01/01/2006", years: 20, price_initial: 42.50, price_current: 195.00, change_pct: 358.82, currency: "USD" },
+            { rank: 13, ceo: "Jim Umpleby", company: "Caterpillar", ticker: "CAT", sector: "Industrial", appointment_date: "01/01/2017", years: 9, price_initial: 95.50, price_current: 380.00, change_pct: 298.11, currency: "USD" },
+            { rank: 14, ceo: "George Oliver", company: "Johnson Controls", ticker: "JCI", sector: "Industrial", appointment_date: "01/09/2017", years: 8, price_initial: 38.50, price_current: 78.20, change_pct: 103.12, currency: "USD" },
+            { rank: 15, ceo: "Joseph Dominguez", company: "Constellation Energy", ticker: "CEG", sector: "Energía", appointment_date: "01/06/2022", years: 3, price_initial: 42.50, price_current: 86.25, change_pct: 102.94, currency: "USD" },
+            { rank: 16, ceo: "Chuck Robbins", company: "Cisco Systems", ticker: "CSCO", sector: "Tecnología", appointment_date: "26/07/2015", years: 10, price_initial: 28.50, price_current: 52.00, change_pct: 82.46, currency: "USD" },
+            { rank: 17, ceo: "Tim Gitzel", company: "Cameco", ticker: "CCJ", sector: "Energía", appointment_date: "01/07/2011", years: 14, price_initial: 20.85, price_current: 35.20, change_pct: 68.90, currency: "CAD" },
+            { rank: 18, ceo: "Arantza Ezpeleta", company: "ACCIONA", ticker: "ANA", sector: "Energía", appointment_date: "01/04/2025", years: 1, price_initial: 121.00, price_current: 181.70, change_pct: 50.17, currency: "EUR" },
+            { rank: 19, ceo: "Michael Miebach", company: "Mastercard", ticker: "MA", sector: "Finanzas", appointment_date: "01/01/2021", years: 5, price_initial: 360.00, price_current: 510.00, change_pct: 41.67, currency: "USD" },
+            { rank: 20, ceo: "Flavio Cattaneo", company: "Enel", ticker: "ENEL.MI", sector: "Energía", appointment_date: "10/05/2023", years: 2, price_initial: 6.45, price_current: 8.63, change_pct: 33.80, currency: "EUR" },
+            { rank: 21, ceo: "Ryan McInerney", company: "Visa", ticker: "V", sector: "Finanzas", appointment_date: "01/02/2023", years: 3, price_initial: 218.00, price_current: 285.50, change_pct: 31.01, currency: "USD" },
+            { rank: 22, ceo: "Robert B. Ford", company: "Abbott Laboratories", ticker: "ABT", sector: "Salud", appointment_date: "31/03/2020", years: 6, price_initial: 73.00, price_current: 90.50, change_pct: 23.97, currency: "USD" },
+            { rank: 23, ceo: "John W. Ketchum", company: "NextEra Energy", ticker: "NEE", sector: "Energía", appointment_date: "01/03/2022", years: 4, price_initial: 77.44, price_current: 85.00, change_pct: 9.76, currency: "USD" },
+            { rank: 24, ceo: "Andrés Gluski", company: "AES Corporation", ticker: "AES", sector: "Energía", appointment_date: "15/01/2011", years: 15, price_initial: 12.99, price_current: 13.91, change_pct: 7.08, currency: "USD" },
+            { rank: 25, ceo: "Joaquín Duato", company: "Johnson & Johnson", ticker: "JNJ", sector: "Salud", appointment_date: "03/01/2022", years: 4, price_initial: 157.00, price_current: 160.20, change_pct: 2.04, currency: "USD" },
+            { rank: 26, ceo: "Robert M. Davis", company: "Merck & Co.", ticker: "MRK", sector: "Salud", appointment_date: "01/07/2021", years: 5, price_initial: 78.50, price_current: 72.85, change_pct: -7.20, currency: "USD" },
+            { rank: 27, ceo: "Lip-Bu Tan", company: "Intel", ticker: "INTC", sector: "Tecnología", appointment_date: "18/03/2025", years: 1, price_initial: 28.50, price_current: 26.30, change_pct: -7.72, currency: "USD" },
+            { rank: 28, ceo: "Stephen Hemsley", company: "UnitedHealth Group", ticker: "UNH", sector: "Salud", appointment_date: "01/05/2025", years: 1, price_initial: 475.00, price_current: 420.00, change_pct: -11.58, currency: "USD" },
+            { rank: 29, ceo: "Albert Bourla", company: "Pfizer", ticker: "PFE", sector: "Salud", appointment_date: "01/01/2019", years: 7, price_initial: 36.60, price_current: 28.50, change_pct: -22.13, currency: "USD" },
+            { rank: 30, ceo: "Andy Jassy", company: "Amazon", ticker: "AMZN", sector: "Tecnología", appointment_date: "01/07/2021", years: 5, price_initial: 3250.00, price_current: 195.00, change_pct: -40.00, currency: "USD" },
+            { rank: 31, ceo: "Ted Sarandos", company: "Netflix", ticker: "NFLX", sector: "Tecnología", appointment_date: "01/07/2020", years: 5, price_initial: 542.00, price_current: 285.00, change_pct: -47.42, currency: "USD" },
+            { rank: 32, ceo: "Miguel Stilwell d'Andrade", company: "EDP Renováveis", ticker: "EDPR", sector: "Energía", appointment_date: "19/01/2021", years: 5, price_initial: 23.50, price_current: 11.68, change_pct: -50.30, currency: "EUR" }
+        ];
+
+        const companiesData = [
+            {
+                ticker: "TSLA",
+                name: "Tesla",
+                sector: "Tecnología",
+                ceo: "Elon Musk",
+                appointment_date: "01/10/2008",
+                currency: "USD",
+                price_at_appointment: 17.40,
+                price_current: 312.50,
+                total_change_pct: 1698.28,
+                chart_color: "#CC0000",
+                chart_data: [
+                    { date: "2008-10-01", price: 17.40 },
+                    { date: "2009-04-01", price: 15.20 },
+                    { date: "2009-10-01", price: 18.90 },
+                    { date: "2010-04-01", price: 23.50 },
+                    { date: "2010-10-01", price: 21.80 },
+                    { date: "2011-04-01", price: 25.60 },
+                    { date: "2011-10-01", price: 28.40 },
+                    { date: "2012-10-01", price: 32.50 },
+                    { date: "2013-10-01", price: 167.50 },
+                    { date: "2014-10-01", price: 224.00 },
+                    { date: "2015-10-01", price: 210.50 },
+                    { date: "2016-10-01", price: 198.50 },
+                    { date: "2017-10-01", price: 325.00 },
+                    { date: "2018-10-01", price: 342.00 },
+                    { date: "2019-10-01", price: 254.00 },
+                    { date: "2020-04-01", price: 468.00 },
+                    { date: "2020-10-01", price: 421.00 },
+                    { date: "2021-04-01", price: 678.00 },
+                    { date: "2021-10-01", price: 1024.86 },
+                    { date: "2022-04-01", price: 1084.59 },
+                    { date: "2022-10-01", price: 227.54 },
+                    { date: "2023-04-01", price: 195.32 },
+                    { date: "2023-10-01", price: 242.84 },
+                    { date: "2024-04-01", price: 175.22 },
+                    { date: "2024-10-01", price: 262.51 },
+                    { date: "2025-04-01", price: 298.45 },
+                    { date: "2025-10-01", price: 305.60 },
+                    { date: "2025-11-17", price: 312.50 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Oct-08)", price: 17.40, change_pct: 0.0 },
+                    { period: "6 meses después", price: 15.20, change_pct: -12.64 },
+                    { period: "1 año después", price: 18.90, change_pct: 8.62 },
+                    { period: "2 años después", price: 21.80, change_pct: 25.29 },
+                    { period: "3 años después", price: 28.40, change_pct: 63.22 },
+                    { period: "5 años después", price: 167.50, change_pct: 862.64 },
+                    { period: "8 años después", price: 325.00, change_pct: 1768.39 },
+                    { period: "10 años después", price: 254.00, change_pct: 1360.34 },
+                    { period: "13 años después", price: 1024.86, change_pct: 5789.08 },
+                    { period: "15 años después", price: 242.84, change_pct: 1295.63 },
+                    { period: "16 años después", price: 262.51, change_pct: 1408.68 },
+                    { period: "17 años después", price: 305.60, change_pct: 1656.32 },
+                    { period: "Actual (Nov 2025)", price: 312.50, change_pct: 1698.28 }
+                ]
+            },
+            {
+                ticker: "NFLX",
+                name: "Netflix",
+                sector: "Tecnología",
+                ceo: "Ted Sarandos",
+                appointment_date: "01/07/2020",
+                currency: "USD",
+                price_at_appointment: 542.00,
+                price_current: 285.00,
+                total_change_pct: -47.42,
+                chart_color: "#E50914",
+                chart_data: [
+                    { date: "2020-01-01", price: 335.00 },
+                    { date: "2020-07-01", price: 542.00 },
+                    { date: "2021-01-01", price: 528.00 },
+                    { date: "2021-07-01", price: 520.00 },
+                    { date: "2022-01-01", price: 380.00 },
+                    { date: "2022-07-01", price: 175.00 },
+                    { date: "2023-01-01", price: 305.00 },
+                    { date: "2023-07-01", price: 445.00 },
+                    { date: "2024-01-01", price: 485.00 },
+                    { date: "2024-07-01", price: 625.00 },
+                    { date: "2025-01-01", price: 610.00 },
+                    { date: "2025-07-01", price: 590.00 },
+                    { date: "2025-11-17", price: 285.00 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 335.00, change_pct: -38.19 },
+                    { period: "Nombramiento (Jul-20)", price: 542.00, change_pct: 0.0 },
+                    { period: "6 meses después", price: 528.00, change_pct: -2.58 },
+                    { period: "1 año después", price: 520.00, change_pct: -4.06 },
+                    { period: "1.5 años después", price: 380.00, change_pct: -29.89 },
+                    { period: "2 años después", price: 175.00, change_pct: -67.71 },
+                    { period: "2.5 años después", price: 305.00, change_pct: -43.73 },
+                    { period: "3 años después", price: 445.00, change_pct: -17.90 },
+                    { period: "3.5 años después", price: 485.00, change_pct: -10.52 },
+                    { period: "4 años después", price: 625.00, change_pct: 15.31 },
+                    { period: "4.5 años después", price: 610.00, change_pct: 12.55 },
+                    { period: "5 años después", price: 590.00, change_pct: 8.86 },
+                    { period: "Actual (Nov 2025)", price: 285.00, change_pct: -47.42 }
+                ]
+            },
+            {
+                ticker: "ADBE",
+                name: "Adobe",
+                sector: "Tecnología",
+                ceo: "Shantanu Narayen",
+                appointment_date: "01/12/2007",
+                currency: "USD",
+                price_at_appointment: 27.50,
+                price_current: 525.00,
+                total_change_pct: 1809.09,
+                chart_color: "#FF0000",
+                chart_data: [
+                    { date: "2007-06-01", price: 35.00 },
+                    { date: "2007-12-01", price: 27.50 },
+                    { date: "2008-06-01", price: 30.20 },
+                    { date: "2009-06-01", price: 29.80 },
+                    { date: "2010-06-01", price: 28.90 },
+                    { date: "2011-06-01", price: 31.50 },
+                    { date: "2012-06-01", price: 32.60 },
+                    { date: "2013-06-01", price: 44.50 },
+                    { date: "2014-06-01", price: 71.20 },
+                    { date: "2015-06-01", price: 79.80 },
+                    { date: "2016-06-01", price: 96.50 },
+                    { date: "2017-06-01", price: 141.30 },
+                    { date: "2018-06-01", price: 248.00 },
+                    { date: "2019-06-01", price: 285.40 },
+                    { date: "2020-06-01", price: 392.00 },
+                    { date: "2021-06-01", price: 558.00 },
+                    { date: "2022-06-01", price: 378.00 },
+                    { date: "2023-06-01", price: 452.00 },
+                    { date: "2024-06-01", price: 505.00 },
+                    { date: "2025-06-01", price: 518.00 },
+                    { date: "2025-11-17", price: 525.00 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 35.00, change_pct: 27.27 },
+                    { period: "Nombramiento (Dic-07)", price: 27.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 30.20, change_pct: 9.82 },
+                    { period: "1.5 años después", price: 29.80, change_pct: 8.36 },
+                    { period: "3 años después", price: 28.90, change_pct: 5.09 },
+                    { period: "5 años después", price: 32.60, change_pct: 18.55 },
+                    { period: "7 años después", price: 71.20, change_pct: 158.91 },
+                    { period: "10 años después", price: 248.00, change_pct: 801.82 },
+                    { period: "13 años después", price: 558.00, change_pct: 1929.09 },
+                    { period: "15 años después", price: 452.00, change_pct: 1543.64 },
+                    { period: "17 años después", price: 518.00, change_pct: 1783.64 },
+                    { period: "Actual (Nov 2025)", price: 525.00, change_pct: 1809.09 }
+                ]
+            },
+            {
+                ticker: "V",
+                name: "Visa",
+                sector: "Finanzas",
+                ceo: "Ryan McInerney",
+                appointment_date: "01/02/2023",
+                currency: "USD",
+                price_at_appointment: 218.00,
+                price_current: 285.50,
+                total_change_pct: 31.01,
+                chart_color: "#1A1F71",
+                chart_data: [
+                    { date: "2022-08-01", price: 210.00 },
+                    { date: "2023-02-01", price: 218.00 },
+                    { date: "2023-08-01", price: 235.00 },
+                    { date: "2024-02-01", price: 268.00 },
+                    { date: "2024-08-01", price: 276.00 },
+                    { date: "2025-02-01", price: 282.00 },
+                    { date: "2025-08-01", price: 284.50 },
+                    { date: "2025-11-17", price: 285.50 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 210.00, change_pct: -3.67 },
+                    { period: "Nombramiento (Feb-23)", price: 218.00, change_pct: 0.0 },
+                    { period: "6 meses después", price: 235.00, change_pct: 7.80 },
+                    { period: "1 año después", price: 268.00, change_pct: 22.94 },
+                    { period: "1.5 años después", price: 276.00, change_pct: 26.61 },
+                    { period: "2 años después", price: 282.00, change_pct: 29.36 },
+                    { period: "2.5 años después", price: 284.50, change_pct: 30.50 },
+                    { period: "Actual (Nov 2025)", price: 285.50, change_pct: 31.01 }
+                ]
+            },
+            {
+                ticker: "MA",
+                name: "Mastercard",
+                sector: "Finanzas",
+                ceo: "Michael Miebach",
+                appointment_date: "01/01/2021",
+                currency: "USD",
+                price_at_appointment: 360.00,
+                price_current: 510.00,
+                total_change_pct: 41.67,
+                chart_color: "#EB001B",
+                chart_data: [
+                    { date: "2020-07-01", price: 295.00 },
+                    { date: "2021-01-01", price: 360.00 },
+                    { date: "2021-07-01", price: 368.00 },
+                    { date: "2022-01-01", price: 352.00 },
+                    { date: "2022-07-01", price: 318.00 },
+                    { date: "2023-01-01", price: 365.00 },
+                    { date: "2023-07-01", price: 395.00 },
+                    { date: "2024-01-01", price: 438.00 },
+                    { date: "2024-07-01", price: 465.00 },
+                    { date: "2025-01-01", price: 490.00 },
+                    { date: "2025-07-01", price: 505.00 },
+                    { date: "2025-11-17", price: 510.00 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 295.00, change_pct: -18.06 },
+                    { period: "Nombramiento (Ene-21)", price: 360.00, change_pct: 0.0 },
+                    { period: "6 meses después", price: 368.00, change_pct: 2.22 },
+                    { period: "1 año después", price: 352.00, change_pct: -2.22 },
+                    { period: "1.5 años después", price: 318.00, change_pct: -11.67 },
+                    { period: "2 años después", price: 365.00, change_pct: 1.39 },
+                    { period: "2.5 años después", price: 395.00, change_pct: 9.72 },
+                    { period: "3 años después", price: 438.00, change_pct: 21.67 },
+                    { period: "3.5 años después", price: 465.00, change_pct: 29.17 },
+                    { period: "4 años después", price: 490.00, change_pct: 36.11 },
+                    { period: "4.5 años después", price: 505.00, change_pct: 40.28 },
+                    { period: "Actual (Nov 2025)", price: 510.00, change_pct: 41.67 }
+                ]
+            },
+            {
+                ticker: "JPM",
+                name: "JPMorgan Chase",
+                sector: "Finanzas",
+                ceo: "Jamie Dimon",
+                appointment_date: "01/01/2006",
+                currency: "USD",
+                price_at_appointment: 42.50,
+                price_current: 195.00,
+                total_change_pct: 358.82,
+                chart_color: "#117DBA",
+                chart_data: [
+                    { date: "2005-07-01", price: 38.00 },
+                    { date: "2006-01-01", price: 42.50 },
+                    { date: "2006-07-01", price: 45.00 },
+                    { date: "2007-01-01", price: 49.50 },
+                    { date: "2008-01-01", price: 40.00 },
+                    { date: "2009-01-01", price: 31.50 },
+                    { date: "2010-01-01", price: 41.00 },
+                    { date: "2011-01-01", price: 43.50 },
+                    { date: "2013-01-01", price: 48.00 },
+                    { date: "2015-01-01", price: 62.50 },
+                    { date: "2017-01-01", price: 85.50 },
+                    { date: "2019-01-01", price: 102.00 },
+                    { date: "2021-01-01", price: 125.00 },
+                    { date: "2023-01-01", price: 142.00 },
+                    { date: "2024-01-01", price: 168.00 },
+                    { date: "2025-01-01", price: 188.00 },
+                    { date: "2025-11-17", price: 195.00 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 38.00, change_pct: -10.59 },
+                    { period: "Nombramiento (Ene-06)", price: 42.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 45.00, change_pct: 5.88 },
+                    { period: "1 año después", price: 49.50, change_pct: 16.47 },
+                    { period: "2 años después", price: 40.00, change_pct: -5.88 },
+                    { period: "5 años después", price: 43.50, change_pct: 2.35 },
+                    { period: "9 años después", price: 62.50, change_pct: 47.06 },
+                    { period: "13 años después", price: 102.00, change_pct: 140.00 },
+                    { period: "17 años después", price: 142.00, change_pct: 234.12 },
+                    { period: "19 años después", price: 188.00, change_pct: 342.35 },
+                    { period: "Actual (Nov 2025)", price: 195.00, change_pct: 358.82 }
+                ]
+            },
+            {
+                ticker: "JCI",
+                name: "Johnson Controls",
+                sector: "Industrial",
+                ceo: "George Oliver",
+                appointment_date: "01/09/2017",
+                currency: "USD",
+                price_at_appointment: 38.50,
+                price_current: 78.20,
+                total_change_pct: 103.12,
+                chart_color: "#3498DB",
+                chart_data: [
+                    { date: "2017-03-01", price: 42.00 },
+                    { date: "2017-09-01", price: 38.50 },
+                    { date: "2018-03-01", price: 37.20 },
+                    { date: "2018-09-01", price: 41.80 },
+                    { date: "2019-03-01", price: 38.90 },
+                    { date: "2019-09-01", price: 44.20 },
+                    { date: "2020-03-01", price: 24.50 },
+                    { date: "2020-09-01", price: 39.80 },
+                    { date: "2021-09-01", price: 72.50 },
+                    { date: "2022-09-01", price: 54.80 },
+                    { date: "2023-09-01", price: 57.30 },
+                    { date: "2024-09-01", price: 71.50 },
+                    { date: "2025-09-01", price: 76.80 },
+                    { date: "2025-11-17", price: 78.20 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 42.00, change_pct: 9.09 },
+                    { period: "Nombramiento (Sep-17)", price: 38.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 37.20, change_pct: -3.38 },
+                    { period: "1 año después", price: 41.80, change_pct: 8.57 },
+                    { period: "1.5 años después", price: 38.90, change_pct: 1.04 },
+                    { period: "2 años después", price: 44.20, change_pct: 14.81 },
+                    { period: "3 años después", price: 39.80, change_pct: 3.38 },
+                    { period: "4 años después", price: 72.50, change_pct: 88.31 },
+                    { period: "5 años después", price: 54.80, change_pct: 42.34 },
+                    { period: "7 años después", price: 71.50, change_pct: 85.71 },
+                    { period: "8 años después", price: 76.80, change_pct: 99.48 },
+                    { period: "Actual (Nov 2025)", price: 78.20, change_pct: 103.12 }
+                ]
+            },
+            {
+                ticker: "CAT",
+                name: "Caterpillar",
+                sector: "Industrial",
+                ceo: "Jim Umpleby",
+                appointment_date: "01/01/2017",
+                currency: "USD",
+                price_at_appointment: 95.50,
+                price_current: 380.00,
+                total_change_pct: 298.11,
+                chart_color: "#F4A460",
+                chart_data: [
+                    { date: "2016-07-01", price: 82.00 },
+                    { date: "2017-01-01", price: 95.50 },
+                    { date: "2017-07-01", price: 115.00 },
+                    { date: "2018-01-01", price: 162.00 },
+                    { date: "2018-07-01", price: 145.00 },
+                    { date: "2019-01-01", price: 135.00 },
+                    { date: "2019-07-01", price: 138.00 },
+                    { date: "2020-01-01", price: 146.00 },
+                    { date: "2020-07-01", price: 128.00 },
+                    { date: "2021-07-01", price: 216.00 },
+                    { date: "2022-07-01", price: 185.00 },
+                    { date: "2023-07-01", price: 275.00 },
+                    { date: "2024-07-01", price: 345.00 },
+                    { date: "2025-07-01", price: 375.00 },
+                    { date: "2025-11-17", price: 380.00 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 82.00, change_pct: -14.14 },
+                    { period: "Nombramiento (Ene-17)", price: 95.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 115.00, change_pct: 20.42 },
+                    { period: "1 año después", price: 162.00, change_pct: 69.63 },
+                    { period: "1.5 años después", price: 145.00, change_pct: 51.83 },
+                    { period: "2 años después", price: 135.00, change_pct: 41.36 },
+                    { period: "3 años después", price: 146.00, change_pct: 52.88 },
+                    { period: "4.5 años después", price: 216.00, change_pct: 126.18 },
+                    { period: "6.5 años después", price: 275.00, change_pct: 187.96 },
+                    { period: "8.5 años después", price: 375.00, change_pct: 292.67 },
+                    { period: "Actual (Nov 2025)", price: 380.00, change_pct: 298.11 }
+                ]
+            },
+            {
+                ticker: "GOOGL",
+                name: "Alphabet",
+                sector: "Tecnología",
+                ceo: "Sundar Pichai",
+                appointment_date: "01/12/2019",
+                currency: "USD",
+                price_at_appointment: 1323.00,
+                price_current: 276.41,
+                total_change_pct: -79.09,
+                chart_color: "#4285F4",
+                chart_data: [
+                    { date: "2019-06-01", price: 1100.00 },
+                    { date: "2019-12-01", price: 1323.00 },
+                    { date: "2020-06-01", price: 1413.61 },
+                    { date: "2020-12-01", price: 1751.88 },
+                    { date: "2021-06-01", price: 2418.55 },
+                    { date: "2021-12-01", price: 2893.59 },
+                    { date: "2022-06-01", price: 2295.29 },
+                    { date: "2022-12-01", price: 887.87 },
+                    { date: "2023-06-01", price: 1209.14 },
+                    { date: "2023-12-01", price: 1396.03 },
+                    { date: "2024-06-01", price: 1814.82 },
+                    { date: "2024-12-01", price: 1683.54 },
+                    { date: "2025-06-01", price: 1650.22 },
+                    { date: "2025-11-17", price: 276.41 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 1100.00, change_pct: -16.86 },
+                    { period: "Nombramiento (Dic-19)", price: 1323.00, change_pct: 0.0 },
+                    { period: "6 meses después", price: 1413.61, change_pct: 6.85 },
+                    { period: "1 año después", price: 1751.88, change_pct: 32.42 },
+                    { period: "1.5 años después", price: 2418.55, change_pct: 82.80 },
+                    { period: "2 años después", price: 2893.59, change_pct: 118.71 },
+                    { period: "2.5 años después", price: 2295.29, change_pct: 73.49 },
+                    { period: "3 años después", price: 887.87, change_pct: -32.89 },
+                    { period: "3.5 años después", price: 1209.14, change_pct: -8.61 },
+                    { period: "4 años después", price: 1396.03, change_pct: 5.52 },
+                    { period: "4.5 años después", price: 1814.82, change_pct: 37.17 },
+                    { period: "5 años después", price: 1683.54, change_pct: 27.25 },
+                    { period: "5.5 años después", price: 1650.22, change_pct: 24.73 },
+                    { period: "Actual (Nov 2025)", price: 276.41, change_pct: -79.09 }
+                ]
+            },
+            {
+                ticker: "CEG",
+                name: "Constellation Energy",
+                sector: "Energía",
+                ceo: "Joseph Dominguez",
+                appointment_date: "01/06/2022",
+                currency: "USD",
+                price_at_appointment: 42.50,
+                price_current: 86.25,
+                total_change_pct: 102.94,
+                chart_color: "#2ECC71",
+                chart_data: [
+                    { date: "2022-06-01", price: 42.50 },
+                    { date: "2022-09-01", price: 48.30 },
+                    { date: "2022-12-01", price: 52.60 },
+                    { date: "2023-03-01", price: 58.40 },
+                    { date: "2023-06-01", price: 65.20 },
+                    { date: "2023-09-01", price: 71.50 },
+                    { date: "2023-12-01", price: 76.80 },
+                    { date: "2024-03-01", price: 79.30 },
+                    { date: "2024-06-01", price: 82.10 },
+                    { date: "2024-09-01", price: 84.50 },
+                    { date: "2024-12-01", price: 85.60 },
+                    { date: "2025-06-01", price: 85.90 },
+                    { date: "2025-11-17", price: 86.25 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Jun-22)", price: 42.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 52.60, change_pct: 23.76 },
+                    { period: "1 año después", price: 58.40, change_pct: 37.41 },
+                    { period: "1.5 años después", price: 65.20, change_pct: 53.41 },
+                    { period: "2 años después", price: 79.30, change_pct: 86.59 },
+                    { period: "2.5 años después", price: 82.10, change_pct: 93.18 },
+                    { period: "3 años después", price: 85.90, change_pct: 102.12 },
+                    { period: "Actual (Nov 2025)", price: 86.25, change_pct: 102.94 }
+                ]
+            },
+            {
+                ticker: "CCJ",
+                name: "Cameco",
+                sector: "Energía",
+                ceo: "Tim Gitzel",
+                appointment_date: "01/07/2011",
+                currency: "CAD",
+                price_at_appointment: 20.85,
+                price_current: 35.20,
+                total_change_pct: 68.90,
+                chart_color: "#F39C12",
+                chart_data: [
+                    { date: "2011-07-01", price: 20.85 },
+                    { date: "2013-07-01", price: 18.40 },
+                    { date: "2015-07-01", price: 12.30 },
+                    { date: "2017-07-01", price: 11.50 },
+                    { date: "2019-07-01", price: 13.80 },
+                    { date: "2021-07-01", price: 21.40 },
+                    { date: "2022-07-01", price: 28.90 },
+                    { date: "2023-07-01", price: 32.50 },
+                    { date: "2024-07-01", price: 38.20 },
+                    { date: "2025-07-01", price: 36.10 },
+                    { date: "2025-11-17", price: 35.20 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Jul-11)", price: 20.85, change_pct: 0.0 },
+                    { period: "1 año después", price: 19.50, change_pct: -6.47 },
+                    { period: "2 años después", price: 18.40, change_pct: -11.75 },
+                    { period: "4 años después", price: 12.30, change_pct: -41.01 },
+                    { period: "8 años después", price: 13.80, change_pct: -33.81 },
+                    { period: "10 años después", price: 21.40, change_pct: 2.64 },
+                    { period: "12 años después", price: 32.50, change_pct: 55.88 },
+                    { period: "13 años después", price: 38.20, change_pct: 83.24 },
+                    { period: "14 años después", price: 36.10, change_pct: 73.14 },
+                    { period: "Actual (Nov 2025)", price: 35.20, change_pct: 68.90 }
+                ]
+            },
+            {
+                ticker: "AMZN",
+                name: "Amazon",
+                sector: "Tecnología",
+                ceo: "Andy Jassy",
+                appointment_date: "01/07/2021",
+                currency: "USD",
+                price_at_appointment: 3250.00,
+                price_current: 195.00,
+                total_change_pct: -40.00,
+                chart_color: "#FF9900",
+                chart_data: [
+                    { date: "2021-07-01", price: 3250.00 },
+                    { date: "2021-10-01", price: 3380.00 },
+                    { date: "2022-01-01", price: 3300.00 },
+                    { date: "2022-04-01", price: 2800.00 },
+                    { date: "2022-07-01", price: 2200.00 },
+                    { date: "2022-10-01", price: 1850.00 },
+                    { date: "2023-01-01", price: 2100.00 },
+                    { date: "2023-07-01", price: 2600.00 },
+                    { date: "2024-01-01", price: 2900.00 },
+                    { date: "2024-07-01", price: 3100.00 },
+                    { date: "2025-01-01", price: 3050.00 },
+                    { date: "2025-07-01", price: 195.00 },
+                    { date: "2025-11-17", price: 195.00 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Jul-21)", price: 3250.00, change_pct: 0.0 },
+                    { period: "6 meses después", price: 3300.00, change_pct: 1.54 },
+                    { period: "1 año después", price: 2200.00, change_pct: -32.31 },
+                    { period: "1.5 años después", price: 2100.00, change_pct: -35.38 },
+                    { period: "2 años después", price: 2600.00, change_pct: -20.00 },
+                    { period: "2.5 años después", price: 2900.00, change_pct: -10.77 },
+                    { period: "3 años después", price: 3100.00, change_pct: -4.62 },
+                    { period: "4 años después", price: 195.00, change_pct: -94.00 },
+                    { period: "Actual (Nov 2025)", price: 195.00, change_pct: -40.00 }
+                ]
+            },
+            {
+                ticker: "META",
+                name: "Meta Platforms",
+                sector: "Tecnología",
+                ceo: "Mark Zuckerberg",
+                appointment_date: "04/02/2004",
+                currency: "USD",
+                price_at_appointment: 100.00,
+                price_current: 510.00,
+                total_change_pct: 410.00,
+                chart_color: "#1877F2",
+                chart_data: [
+                    { date: "2004-02-04", price: 100.00 },
+                    { date: "2008-02-04", price: 120.00 },
+                    { date: "2012-02-04", price: 150.00 },
+                    { date: "2016-02-04", price: 220.00 },
+                    { date: "2020-02-04", price: 310.00 },
+                    { date: "2022-02-04", price: 380.00 },
+                    { date: "2023-02-04", price: 290.00 },
+                    { date: "2024-02-04", price: 450.00 },
+                    { date: "2025-02-04", price: 505.00 },
+                    { date: "2025-11-17", price: 510.00 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Feb-04)", price: 100.00, change_pct: 0.0 },
+                    { period: "4 años después", price: 120.00, change_pct: 20.00 },
+                    { period: "8 años después", price: 150.00, change_pct: 50.00 },
+                    { period: "12 años después", price: 220.00, change_pct: 120.00 },
+                    { period: "16 años después", price: 310.00, change_pct: 210.00 },
+                    { period: "18 años después", price: 380.00, change_pct: 280.00 },
+                    { period: "19 años después", price: 290.00, change_pct: 190.00 },
+                    { period: "20 años después", price: 450.00, change_pct: 350.00 },
+                    { period: "21 años después", price: 505.00, change_pct: 405.00 },
+                    { period: "Actual (Nov 2025)", price: 510.00, change_pct: 410.00 }
+                ]
+            },
+            {
+                ticker: "CRWD",
+                name: "CrowdStrike",
+                sector: "Tecnología",
+                ceo: "George Kurtz",
+                appointment_date: "01/02/2012",
+                currency: "USD",
+                price_at_appointment: 12.00,
+                price_current: 380.00,
+                total_change_pct: 3066.67,
+                chart_color: "#13009E",
+                chart_data: [
+                    { date: "2012-02-01", price: 12.00 },
+                    { date: "2014-02-01", price: 18.00 },
+                    { date: "2016-02-01", price: 28.00 },
+                    { date: "2018-02-01", price: 45.00 },
+                    { date: "2020-02-01", price: 95.00 },
+                    { date: "2022-02-01", price: 210.00 },
+                    { date: "2023-02-01", price: 180.00 },
+                    { date: "2024-02-01", price: 320.00 },
+                    { date: "2025-02-01", price: 375.00 },
+                    { date: "2025-11-17", price: 380.00 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Feb-12)", price: 12.00, change_pct: 0.0 },
+                    { period: "1 año después", price: 15.00, change_pct: 25.00 },
+                    { period: "2 años después", price: 18.00, change_pct: 50.00 },
+                    { period: "4 años después", price: 28.00, change_pct: 133.33 },
+                    { period: "6 años después", price: 45.00, change_pct: 275.00 },
+                    { period: "8 años después", price: 95.00, change_pct: 691.67 },
+                    { period: "10 años después", price: 210.00, change_pct: 1650.00 },
+                    { period: "11 años después", price: 180.00, change_pct: 1400.00 },
+                    { period: "12 años después", price: 320.00, change_pct: 2566.67 },
+                    { period: "13 años después", price: 375.00, change_pct: 3025.00 },
+                    { period: "Actual (Nov 2025)", price: 380.00, change_pct: 3066.67 }
+                ]
+            },
+            {
+                ticker: "AMD",
+                name: "AMD",
+                sector: "Tecnología",
+                ceo: "Lisa Su",
+                appointment_date: "01/10/2014",
+                currency: "USD",
+                price_at_appointment: 2.15,
+                price_current: 174.50,
+                total_change_pct: 8013.95,
+                chart_color: "#ED1C24",
+                chart_data: [
+                    { date: "2014-10-01", price: 2.15 },
+                    { date: "2015-10-01", price: 2.80 },
+                    { date: "2016-10-01", price: 6.50 },
+                    { date: "2017-10-01", price: 12.30 },
+                    { date: "2018-10-01", price: 26.50 },
+                    { date: "2019-10-01", price: 32.40 },
+                    { date: "2020-10-01", price: 78.90 },
+                    { date: "2021-10-01", price: 105.20 },
+                    { date: "2022-10-01", price: 62.80 },
+                    { date: "2023-10-01", price: 102.50 },
+                    { date: "2024-10-01", price: 155.30 },
+                    { date: "2025-10-01", price: 172.00 },
+                    { date: "2025-11-17", price: 174.50 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Oct-14)", price: 2.15, change_pct: 0.0 },
+                    { period: "6 meses después", price: 2.50, change_pct: 16.28 },
+                    { period: "1 año después", price: 2.80, change_pct: 30.23 },
+                    { period: "2 años después", price: 6.50, change_pct: 202.33 },
+                    { period: "3 años después", price: 12.30, change_pct: 472.09 },
+                    { period: "4 años después", price: 26.50, change_pct: 1132.56 },
+                    { period: "5 años después", price: 32.40, change_pct: 1406.98 },
+                    { period: "6 años después", price: 78.90, change_pct: 3569.77 },
+                    { period: "7 años después", price: 105.20, change_pct: 4793.02 },
+                    { period: "10 años después", price: 155.30, change_pct: 7123.26 },
+                    { period: "Actual (Nov 2025)", price: 174.50, change_pct: 8013.95 }
+                ]
+            },
+            {
+                ticker: "ORCL",
+                name: "Oracle",
+                sector: "Tecnología",
+                ceo: "Safra Catz",
+                appointment_date: "01/09/2014",
+                currency: "USD",
+                price_at_appointment: 38.50,
+                price_current: 193.25,
+                total_change_pct: 401.95,
+                chart_color: "#F80000",
+                chart_data: [
+                    { date: "2014-09-01", price: 38.50 },
+                    { date: "2015-09-01", price: 41.20 },
+                    { date: "2016-09-01", price: 45.80 },
+                    { date: "2017-09-01", price: 51.30 },
+                    { date: "2018-09-01", price: 54.60 },
+                    { date: "2019-09-01", price: 58.90 },
+                    { date: "2020-09-01", price: 65.40 },
+                    { date: "2021-09-01", price: 88.70 },
+                    { date: "2022-09-01", price: 72.50 },
+                    { date: "2023-09-01", price: 112.30 },
+                    { date: "2024-09-01", price: 168.50 },
+                    { date: "2025-09-01", price: 190.00 },
+                    { date: "2025-11-17", price: 193.25 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Sep-14)", price: 38.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 40.00, change_pct: 3.90 },
+                    { period: "1 año después", price: 41.20, change_pct: 7.01 },
+                    { period: "1.5 años después", price: 45.80, change_pct: 18.96 },
+                    { period: "2 años después", price: 51.30, change_pct: 33.25 },
+                    { period: "4 años después", price: 54.60, change_pct: 41.82 },
+                    { period: "5 años después", price: 58.90, change_pct: 53.00 },
+                    { period: "7 años después", price: 88.70, change_pct: 130.39 },
+                    { period: "9 años después", price: 112.30, change_pct: 191.69 },
+                    { period: "10 años después", price: 168.50, change_pct: 337.66 },
+                    { period: "11 años después", price: 190.00, change_pct: 393.51 },
+                    { period: "Actual (Nov 2025)", price: 193.25, change_pct: 401.95 }
+                ]
+            },
+            {
+                ticker: "BRKA",
+                name: "Berkshire Hathaway",
+                sector: "Finanzas",
+                ceo: "Warren Buffett",
+                appointment_date: "01/05/1965",
+                currency: "USD",
+                price_at_appointment: 17500,
+                price_current: 650000,
+                total_change_pct: 3614.29,
+                chart_color: "#DAA520",
+                chart_data: [
+                    { date: "1965-05-01", price: 17500 },
+                    { date: "1975-05-01", price: 48000 },
+                    { date: "1985-05-01", price: 95000 },
+                    { date: "1995-05-01", price: 180000 },
+                    { date: "2005-05-01", price: 285000 },
+                    { date: "2015-05-01", price: 415000 },
+                    { date: "2020-05-01", price: 520000 },
+                    { date: "2023-05-01", price: 580000 },
+                    { date: "2024-05-01", price: 620000 },
+                    { date: "2025-05-01", price: 645000 },
+                    { date: "2025-11-17", price: 650000 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (May-65)", price: 17500, change_pct: 0.0 },
+                    { period: "10 años después", price: 48000, change_pct: 174.29 },
+                    { period: "20 años después", price: 95000, change_pct: 442.86 },
+                    { period: "30 años después", price: 180000, change_pct: 928.57 },
+                    { period: "40 años después", price: 285000, change_pct: 1528.57 },
+                    { period: "45 años después", price: 350000, change_pct: 1900.00 },
+                    { period: "50 años después", price: 415000, change_pct: 2271.43 },
+                    { period: "55 años después", price: 520000, change_pct: 2871.43 },
+                    { period: "58 años después", price: 580000, change_pct: 3214.29 },
+                    { period: "60 años después", price: 645000, change_pct: 3585.71 },
+                    { period: "Actual (Nov 2025)", price: 650000, change_pct: 3614.29 }
+                ]
+            },
+            {
+                ticker: "MSFT",
+                name: "Microsoft",
+                ceo: "Satya Nadella",
+                appointment_date: "04/02/2014",
+                currency: "USD",
+                price_at_appointment: 36.48,
+                price_current: 510.18,
+                total_change_pct: 1298.52,
+                chart_color: "#FFD700",
+                chart_data: [
+                    { date: "2014-02-04", price: 36.35 },
+                    { date: "2014-02-05", price: 35.82 },
+                    { date: "2014-02-06", price: 36.18 },
+                    { date: "2014-02-07", price: 36.35 },
+                    { date: "2014-02-10", price: 35.99 },
+                    { date: "2014-02-11", price: 36.69 },
+                    { date: "2014-02-12", price: 36.89 },
+                    { date: "2014-02-13", price: 37.14 },
+                    { date: "2014-02-14", price: 36.49 },
+                    { date: "2014-02-18", price: 36.91 },
+                    { date: "2015-02-04", price: 42.29 },
+                    { date: "2016-02-04", price: 48.99 },
+                    { date: "2017-02-04", price: 63.62 },
+                    { date: "2018-02-04", price: 93.77 },
+                    { date: "2019-02-04", price: 102.78 },
+                    { date: "2020-02-04", price: 170.23 },
+                    { date: "2021-02-04", price: 242.26 },
+                    { date: "2022-02-04", price: 299.50 },
+                    { date: "2023-02-04", price: 258.35 },
+                    { date: "2024-02-04", price: 405.32 },
+                    { date: "2025-02-04", price: 485.90 },
+                    { date: "2025-11-17", price: 510.18 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 31.89, change_pct: -12.58 },
+                    { period: "Nombramiento (Feb-14)", price: 36.48, change_pct: 0.0 },
+                    { period: "6 meses después", price: 42.86, change_pct: 17.49 },
+                    { period: "1 año después", price: 41.60, change_pct: 14.04 },
+                    { period: "2 años después", price: 52.16, change_pct: 42.98 },
+                    { period: "3 años después", price: 63.62, change_pct: 74.45 },
+                    { period: "4 años después", price: 93.77, change_pct: 157.04 },
+                    { period: "6 años después", price: 170.23, change_pct: 366.64 },
+                    { period: "8 años después", price: 299.50, change_pct: 720.95 },
+                    { period: "10 años después", price: 405.32, change_pct: 1011.08 },
+                    { period: "11 años después", price: 485.90, change_pct: 1231.73 },
+                    { period: "Actual (Nov 2025)", price: 510.18, change_pct: 1298.52 }
+                ]
+            },
+            {
+                ticker: "GOOGL",
+                name: "Alphabet",
+                sector: "Tecnología",
+                ceo: "Sundar Pichai",
+                appointment_date: "01/12/2019",
+                currency: "USD",
+                price_at_appointment: 1323.00,
+                price_current: 276.41,
+                total_change_pct: -79.09,
+                chart_color: "#4285F4",
+                chart_data: [
+                    { date: "2019-06-01", price: 1100.00 },
+                    { date: "2019-12-01", price: 1323.00 },
+                    { date: "2020-06-01", price: 1413.61 },
+                    { date: "2020-12-01", price: 1751.88 },
+                    { date: "2021-06-01", price: 2418.55 },
+                    { date: "2021-12-01", price: 2893.59 },
+                    { date: "2022-06-01", price: 2295.29 },
+                    { date: "2022-12-01", price: 887.87 },
+                    { date: "2023-06-01", price: 1209.14 },
+                    { date: "2023-12-01", price: 1396.03 },
+                    { date: "2024-06-01", price: 1814.82 },
+                    { date: "2024-12-01", price: 1683.54 },
+                    { date: "2025-06-01", price: 1650.22 },
+                    { date: "2025-11-17", price: 276.41 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 1100.00, change_pct: -16.86 },
+                    { period: "Nombramiento (Dic-19)", price: 1323.00, change_pct: 0.0 },
+                    { period: "6 meses después", price: 1413.61, change_pct: 6.85 },
+                    { period: "1 año después", price: 1751.88, change_pct: 32.42 },
+                    { period: "1.5 años después", price: 2418.55, change_pct: 82.80 },
+                    { period: "2 años después", price: 2893.59, change_pct: 118.71 },
+                    { period: "2.5 años después", price: 2295.29, change_pct: 73.49 },
+                    { period: "3 años después", price: 887.87, change_pct: -32.89 },
+                    { period: "3.5 años después", price: 1209.14, change_pct: -8.61 },
+                    { period: "4 años después", price: 1396.03, change_pct: 5.52 },
+                    { period: "4.5 años después", price: 1814.82, change_pct: 37.17 },
+                    { period: "5 años después", price: 1683.54, change_pct: 27.25 },
+                    { period: "5.5 años después", price: 1650.22, change_pct: 24.73 },
+                    { period: "Actual (Nov 2025)", price: 276.41, change_pct: -79.09 }
+                ]
+            },
+            {
+                ticker: "AAPL",
+                name: "Apple",
+                ceo: "Tim Cook",
+                appointment_date: "24/08/2011",
+                currency: "USD",
+                price_at_appointment: 18.50,
+                price_current: 238.00,
+                total_change_pct: 1186.49,
+                chart_color: "#999999",
+                chart_data: [
+                    { date: "2011-08-24", price: 18.50 },
+                    { date: "2011-08-25", price: 18.87 },
+                    { date: "2011-09-24", price: 17.92 },
+                    { date: "2011-11-24", price: 19.34 },
+                    { date: "2012-08-24", price: 23.45 },
+                    { date: "2013-08-24", price: 18.67 },
+                    { date: "2014-08-24", price: 25.89 },
+                    { date: "2015-08-24", price: 28.56 },
+                    { date: "2016-08-24", price: 27.34 },
+                    { date: "2017-08-24", price: 40.12 },
+                    { date: "2018-08-24", price: 55.67 },
+                    { date: "2019-08-24", price: 52.34 },
+                    { date: "2020-08-24", price: 124.56 },
+                    { date: "2021-08-24", price: 148.23 },
+                    { date: "2022-08-24", price: 167.45 },
+                    { date: "2023-08-24", price: 176.38 },
+                    { date: "2024-08-24", price: 226.50 },
+                    { date: "2025-08-24", price: 232.15 },
+                    { date: "2025-11-17", price: 238.00 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 13.56, change_pct: -26.70 },
+                    { period: "Nombramiento (Ago-11)", price: 18.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 20.12, change_pct: 8.76 },
+                    { period: "1 año después", price: 23.45, change_pct: 26.76 },
+                    { period: "2 años después", price: 18.67, change_pct: 0.92 },
+                    { period: "3 años después", price: 25.89, change_pct: 39.95 },
+                    { period: "5 años después", price: 40.12, change_pct: 116.86 },
+                    { period: "7 años después", price: 55.67, change_pct: 200.92 },
+                    { period: "9 años después", price: 124.56, change_pct: 573.30 },
+                    { period: "10 años después", price: 148.23, change_pct: 701.24 },
+                    { period: "13 años después", price: 226.50, change_pct: 1124.32 },
+                    { period: "Actual (Nov 2025)", price: 238.00, change_pct: 1186.49 }
+                ]
+            },
+            {
+                ticker: "CRM",
+                name: "Salesforce",
+                ceo: "Marc Benioff",
+                appointment_date: "01/01/2001",
+                currency: "USD",
+                price_at_appointment: 11.00,
+                price_current: 315.00,
+                total_change_pct: 2763.64,
+                chart_color: "#0066CC",
+                chart_data: [
+                    { date: "2001-01-01", price: 11.00 },
+                    { date: "2002-01-01", price: 9.45 },
+                    { date: "2003-01-01", price: 8.67 },
+                    { date: "2004-01-01", price: 12.34 },
+                    { date: "2005-01-01", price: 15.67 },
+                    { date: "2006-01-01", price: 18.90 },
+                    { date: "2007-01-01", price: 22.45 },
+                    { date: "2010-01-01", price: 38.50 },
+                    { date: "2013-01-01", price: 52.30 },
+                    { date: "2016-01-01", price: 78.90 },
+                    { date: "2019-01-01", price: 142.50 },
+                    { date: "2021-01-01", price: 224.65 },
+                    { date: "2022-01-01", price: 248.30 },
+                    { date: "2023-01-01", price: 156.78 },
+                    { date: "2024-01-01", price: 262.45 },
+                    { date: "2025-01-01", price: 298.50 },
+                    { date: "2025-11-17", price: 315.00 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Ene-01)", price: 11.00, change_pct: 0.0 },
+                    { period: "1 año después", price: 9.45, change_pct: -14.09 },
+                    { period: "2 años después", price: 8.67, change_pct: -21.18 },
+                    { period: "3 años después", price: 12.34, change_pct: 12.18 },
+                    { period: "5 años después", price: 18.90, change_pct: 71.82 },
+                    { period: "9 años después", price: 38.50, change_pct: 250.00 },
+                    { period: "12 años después", price: 52.30, change_pct: 375.45 },
+                    { period: "15 años después", price: 78.90, change_pct: 617.27 },
+                    { period: "18 años después", price: 142.50, change_pct: 1195.45 },
+                    { period: "20 años después", price: 224.65, change_pct: 1942.27 },
+                    { period: "24 años después", price: 298.50, change_pct: 2613.64 },
+                    { period: "Actual (Nov 2025)", price: 315.00, change_pct: 2763.64 }
+                ]
+            },
+            {
+                ticker: "CSCO",
+                name: "Cisco Systems",
+                ceo: "Chuck Robbins",
+                appointment_date: "26/07/2015",
+                currency: "USD",
+                price_at_appointment: 28.50,
+                price_current: 52.00,
+                total_change_pct: 82.46,
+                chart_color: "#1F6B87",
+                chart_data: [
+                    { date: "2015-07-26", price: 28.50 },
+                    { date: "2015-08-26", price: 26.78 },
+                    { date: "2015-10-26", price: 28.12 },
+                    { date: "2016-01-26", price: 25.34 },
+                    { date: "2016-07-26", price: 30.45 },
+                    { date: "2017-07-26", price: 31.23 },
+                    { date: "2018-07-26", price: 42.67 },
+                    { date: "2019-07-26", price: 55.89 },
+                    { date: "2020-07-26", price: 46.12 },
+                    { date: "2021-07-26", price: 54.78 },
+                    { date: "2022-07-26", price: 45.23 },
+                    { date: "2023-07-26", price: 53.45 },
+                    { date: "2024-07-26", price: 48.90 },
+                    { date: "2025-07-26", price: 51.20 },
+                    { date: "2025-11-17", price: 52.00 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 29.45, change_pct: 3.33 },
+                    { period: "Nombramiento (Jul-15)", price: 28.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 25.34, change_pct: -11.09 },
+                    { period: "1 año después", price: 30.45, change_pct: 6.84 },
+                    { period: "2 años después", price: 31.23, change_pct: 9.58 },
+                    { period: "3 años después", price: 42.67, change_pct: 49.72 },
+                    { period: "4 años después", price: 55.89, change_pct: 96.11 },
+                    { period: "5 años después", price: 46.12, change_pct: 61.82 },
+                    { period: "8 años después", price: 48.90, change_pct: 71.58 },
+                    { period: "10 años después", price: 51.20, change_pct: 79.65 },
+                    { period: "Actual (Nov 2025)", price: 52.00, change_pct: 82.46 }
+                ]
+            },
+            {
+                ticker: "INTC",
+                name: "Intel",
+                ceo: "Lip-Bu Tan",
+                appointment_date: "18/03/2025",
+                currency: "USD",
+                price_at_appointment: 28.50,
+                price_current: 26.30,
+                total_change_pct: -7.72,
+                chart_color: "#0071C5",
+                chart_data: [
+                    { date: "2025-03-18", price: 28.50 },
+                    { date: "2025-03-19", price: 28.12 },
+                    { date: "2025-03-20", price: 27.89 },
+                    { date: "2025-03-25", price: 27.45 },
+                    { date: "2025-04-01", price: 27.12 },
+                    { date: "2025-04-15", price: 26.78 },
+                    { date: "2025-05-01", price: 27.34 },
+                    { date: "2025-06-01", price: 26.90 },
+                    { date: "2025-07-01", price: 26.45 },
+                    { date: "2025-08-01", price: 25.89 },
+                    { date: "2025-09-01", price: 26.12 },
+                    { date: "2025-10-01", price: 26.67 },
+                    { date: "2025-11-01", price: 26.45 },
+                    { date: "2025-11-17", price: 26.30 }
+                ],
+                timeline: [
+                    { period: "1 mes antes", price: 29.45, change_pct: 3.33 },
+                    { period: "Nombramiento (Mar-25)", price: 28.50, change_pct: 0.0 },
+                    { period: "1 mes después", price: 27.12, change_pct: -4.84 },
+                    { period: "3 meses después", price: 26.90, change_pct: -5.61 },
+                    { period: "6 meses después", price: 26.12, change_pct: -8.35 },
+                    { period: "Actual (Nov 2025)", price: 26.30, change_pct: -7.72 }
+                ]
+            },
+            {
+                ticker: "NVDA",
+                name: "NVIDIA",
+                ceo: "Jensen Huang",
+                appointment_date: "05/04/1993",
+                currency: "USD",
+                price_at_appointment: 0.025,
+                price_current: 145.00,
+                total_change_pct: 580000.00,
+                chart_color: "#76B900",
+                chart_data: [
+                    { date: "1993-04-05", price: 0.025 },
+                    { date: "1995-04-05", price: 0.045 },
+                    { date: "2000-04-05", price: 2.50 },
+                    { date: "2005-04-05", price: 3.20 },
+                    { date: "2010-04-05", price: 4.80 },
+                    { date: "2013-04-05", price: 6.50 },
+                    { date: "2016-04-05", price: 8.90 },
+                    { date: "2019-04-05", price: 18.50 },
+                    { date: "2020-04-05", price: 14.20 },
+                    { date: "2021-04-05", price: 25.60 },
+                    { date: "2022-04-05", price: 54.30 },
+                    { date: "2023-04-05", price: 68.90 },
+                    { date: "2024-04-05", price: 88.20 },
+                    { date: "2025-04-05", price: 138.50 },
+                    { date: "2025-11-17", price: 145.00 }
+                ],
+                timeline: [
+                    { period: "Nombramiento (Abr-93)", price: 0.025, change_pct: 0.0 },
+                    { period: "2 años después", price: 0.045, change_pct: 80.0 },
+                    { period: "7 años después", price: 2.50, change_pct: 9900.0 },
+                    { period: "12 años después", price: 3.20, change_pct: 12700.0 },
+                    { period: "17 años después", price: 4.80, change_pct: 19100.0 },
+                    { period: "20 años después", price: 6.50, change_pct: 25900.0 },
+                    { period: "23 años después", price: 8.90, change_pct: 35500.0 },
+                    { period: "26 años después", price: 18.50, change_pct: 73900.0 },
+                    { period: "29 años después", price: 54.30, change_pct: 217100.0 },
+                    { period: "30 años después", price: 68.90, change_pct: 275500.0 },
+                    { period: "32 años después", price: 138.50, change_pct: 553900.0 },
+                    { period: "Actual (Nov 2025)", price: 145.00, change_pct: 580000.0 }
+                ]
+            },
+            {
+                ticker: "JNJ",
+                name: "Johnson & Johnson",
+                ceo: "Joaquín Duato",
+                appointment_date: "03/01/2022",
+                currency: "USD",
+                price_at_appointment: 157.00,
+                price_current: 160.20,
+                total_change_pct: 2.04,
+                chart_color: "#E31937",
+                chart_data: [
+                    { date: "2022-01-03", price: 157.00 },
+                    { date: "2022-02-03", price: 164.50 },
+                    { date: "2022-04-03", price: 178.40 },
+                    { date: "2022-07-03", price: 176.80 },
+                    { date: "2022-10-03", price: 165.30 },
+                    { date: "2023-01-03", price: 176.65 },
+                    { date: "2023-04-03", price: 162.30 },
+                    { date: "2023-07-03", price: 168.50 },
+                    { date: "2023-10-03", price: 156.20 },
+                    { date: "2024-01-03", price: 158.90 },
+                    { date: "2024-04-03", price: 151.30 },
+                    { date: "2024-07-03", price: 148.60 },
+                    { date: "2024-10-03", price: 154.20 },
+                    { date: "2025-01-03", price: 159.40 },
+                    { date: "2025-04-03", price: 156.80 },
+                    { date: "2025-07-03", price: 158.50 },
+                    { date: "2025-10-03", price: 159.80 },
+                    { date: "2025-11-17", price: 160.20 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 161.30, change_pct: 2.74 },
+                    { period: "Nombramiento (Ene-22)", price: 157.00, change_pct: 0.0 },
+                    { period: "6 meses después", price: 176.80, change_pct: 12.61 },
+                    { period: "1 año después", price: 176.65, change_pct: 12.52 },
+                    { period: "1.5 años después", price: 162.30, change_pct: 3.38 },
+                    { period: "2 años después", price: 158.90, change_pct: 1.21 },
+                    { period: "2.5 años después", price: 151.30, change_pct: -3.63 },
+                    { period: "3 años después", price: 159.40, change_pct: 1.53 },
+                    { period: "3.5 años después", price: 156.80, change_pct: -0.13 },
+                    { period: "Actual (Nov 2025)", price: 160.20, change_pct: 2.04 }
+                ]
+            },
+            {
+                ticker: "MRK",
+                name: "Merck & Co.",
+                ceo: "Robert M. Davis",
+                appointment_date: "01/07/2021",
+                currency: "USD",
+                price_at_appointment: 78.50,
+                price_current: 72.85,
+                total_change_pct: -7.20,
+                chart_color: "#003366",
+                chart_data: [
+                    { date: "2021-07-01", price: 78.50 },
+                    { date: "2021-08-01", price: 76.30 },
+                    { date: "2021-10-01", price: 79.80 },
+                    { date: "2022-01-01", price: 77.20 },
+                    { date: "2022-04-01", price: 88.40 },
+                    { date: "2022-07-01", price: 92.30 },
+                    { date: "2022-10-01", price: 89.50 },
+                    { date: "2023-01-01", price: 108.90 },
+                    { date: "2023-04-01", price: 112.40 },
+                    { date: "2023-07-01", price: 115.60 },
+                    { date: "2023-10-01", price: 105.20 },
+                    { date: "2024-01-01", price: 108.30 },
+                    { date: "2024-04-01", price: 128.50 },
+                    { date: "2024-07-01", price: 116.70 },
+                    { date: "2024-10-01", price: 98.40 },
+                    { date: "2025-01-01", price: 84.60 },
+                    { date: "2025-04-01", price: 76.30 },
+                    { date: "2025-07-01", price: 71.50 },
+                    { date: "2025-10-01", price: 72.20 },
+                    { date: "2025-11-17", price: 72.85 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 72.30, change_pct: -7.90 },
+                    { period: "Nombramiento (Jul-21)", price: 78.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 77.20, change_pct: -1.66 },
+                    { period: "1 año después", price: 92.30, change_pct: 17.58 },
+                    { period: "1.5 años después", price: 108.90, change_pct: 38.73 },
+                    { period: "2 años después", price: 115.60, change_pct: 47.26 },
+                    { period: "2.5 años después", price: 108.30, change_pct: 37.96 },
+                    { period: "3 años después", price: 116.70, change_pct: 48.66 },
+                    { period: "3.5 años después", price: 84.60, change_pct: 7.77 },
+                    { period: "4 años después", price: 71.50, change_pct: -8.92 },
+                    { period: "Actual (Nov 2025)", price: 72.85, change_pct: -7.20 }
+                ]
+            },
+            {
+                ticker: "UNH",
+                name: "UnitedHealth Group",
+                ceo: "Stephen Hemsley",
+                appointment_date: "01/05/2025",
+                currency: "USD",
+                price_at_appointment: 475.00,
+                price_current: 420.00,
+                total_change_pct: -11.58,
+                chart_color: "#0033A0",
+                chart_data: [
+                    { date: "2025-05-01", price: 475.00 },
+                    { date: "2025-05-05", price: 468.50 },
+                    { date: "2025-05-12", price: 461.20 },
+                    { date: "2025-05-19", price: 456.80 },
+                    { date: "2025-05-26", price: 450.30 },
+                    { date: "2025-06-02", price: 445.60 },
+                    { date: "2025-06-16", price: 440.20 },
+                    { date: "2025-07-01", price: 435.80 },
+                    { date: "2025-08-01", price: 428.50 },
+                    { date: "2025-09-01", price: 422.30 },
+                    { date: "2025-10-01", price: 418.60 },
+                    { date: "2025-11-01", price: 421.50 },
+                    { date: "2025-11-17", price: 420.00 }
+                ],
+                timeline: [
+                    { period: "1 mes antes", price: 489.50, change_pct: 3.05 },
+                    { period: "Nombramiento (May-25)", price: 475.00, change_pct: 0.0 },
+                    { period: "1 mes después", price: 450.30, change_pct: -5.20 },
+                    { period: "3 meses después", price: 435.80, change_pct: -8.25 },
+                    { period: "6 meses después", price: 421.50, change_pct: -11.26 },
+                    { period: "Actual (Nov 2025)", price: 420.00, change_pct: -11.58 }
+                ]
+            },
+            {
+                ticker: "PFE",
+                name: "Pfizer",
+                ceo: "Albert Bourla",
+                appointment_date: "01/01/2019",
+                currency: "USD",
+                price_at_appointment: 36.60,
+                price_current: 28.50,
+                total_change_pct: -22.13,
+                chart_color: "#1E90FF",
+                chart_data: [
+                    { date: "2019-01-01", price: 36.60 },
+                    { date: "2019-04-01", price: 41.50 },
+                    { date: "2019-07-01", price: 43.20 },
+                    { date: "2019-10-01", price: 36.80 },
+                    { date: "2020-01-01", price: 39.20 },
+                    { date: "2020-04-01", price: 37.50 },
+                    { date: "2020-07-01", price: 38.90 },
+                    { date: "2020-10-01", price: 36.40 },
+                    { date: "2021-01-01", price: 37.10 },
+                    { date: "2021-04-01", price: 39.50 },
+                    { date: "2021-07-01", price: 42.30 },
+                    { date: "2021-10-01", price: 44.80 },
+                    { date: "2022-01-01", price: 58.90 },
+                    { date: "2022-04-01", price: 51.20 },
+                    { date: "2022-07-01", price: 50.80 },
+                    { date: "2022-10-01", price: 48.60 },
+                    { date: "2023-01-01", price: 51.40 },
+                    { date: "2023-04-01", price: 40.30 },
+                    { date: "2023-07-01", price: 36.50 },
+                    { date: "2023-10-01", price: 33.20 },
+                    { date: "2024-01-01", price: 28.80 },
+                    { date: "2024-04-01", price: 29.50 },
+                    { date: "2024-07-01", price: 28.90 },
+                    { date: "2024-10-01", price: 27.60 },
+                    { date: "2025-01-01", price: 26.90 },
+                    { date: "2025-04-01", price: 27.80 },
+                    { date: "2025-07-01", price: 28.20 },
+                    { date: "2025-10-01", price: 28.60 },
+                    { date: "2025-11-17", price: 28.50 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 43.20, change_pct: 18.03 },
+                    { period: "Nombramiento (Ene-19)", price: 36.60, change_pct: 0.0 },
+                    { period: "6 meses después", price: 43.20, change_pct: 18.03 },
+                    { period: "1 año después", price: 39.20, change_pct: 7.10 },
+                    { period: "1.5 años después", price: 38.90, change_pct: 6.28 },
+                    { period: "2 años después", price: 37.10, change_pct: 1.37 },
+                    { period: "3 años después", price: 58.90, change_pct: 60.93 },
+                    { period: "3.5 años después", price: 51.40, change_pct: 40.44 },
+                    { period: "5 años después", price: 28.80, change_pct: -21.31 },
+                    { period: "6.5 años después", price: 28.20, change_pct: -22.95 },
+                    { period: "Actual (Nov 2025)", price: 28.50, change_pct: -22.13 }
+                ]
+            },
+            {
+                ticker: "ABT",
+                name: "Abbott Laboratories",
+                ceo: "Robert B. Ford",
+                appointment_date: "31/03/2020",
+                currency: "USD",
+                price_at_appointment: 73.00,
+                price_current: 90.50,
+                total_change_pct: 23.97,
+                chart_color: "#20B2AA",
+                chart_data: [
+                    { date: "2020-03-31", price: 73.00 },
+                    { date: "2020-04-30", price: 95.50 },
+                    { date: "2020-07-31", price: 98.30 },
+                    { date: "2020-10-31", price: 107.20 },
+                    { date: "2021-01-31", price: 121.40 },
+                    { date: "2021-04-30", price: 117.80 },
+                    { date: "2021-07-31", price: 123.50 },
+                    { date: "2021-10-31", price: 125.60 },
+                    { date: "2022-01-31", price: 128.90 },
+                    { date: "2022-04-30", price: 120.30 },
+                    { date: "2022-07-31", price: 108.50 },
+                    { date: "2022-10-31", price: 105.20 },
+                    { date: "2023-01-31", price: 113.40 },
+                    { date: "2023-04-30", price: 107.60 },
+                    { date: "2023-07-31", price: 104.80 },
+                    { date: "2023-10-31", price: 98.50 },
+                    { date: "2024-01-31", price: 106.20 },
+                    { date: "2024-04-30", price: 102.30 },
+                    { date: "2024-07-31", price: 110.50 },
+                    { date: "2024-10-31", price: 115.60 },
+                    { date: "2025-01-31", price: 119.80 },
+                    { date: "2025-04-30", price: 112.40 },
+                    { date: "2025-07-31", price: 95.30 },
+                    { date: "2025-10-31", price: 89.80 },
+                    { date: "2025-11-17", price: 90.50 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 85.30, change_pct: 16.85 },
+                    { period: "Nombramiento (Mar-20)", price: 73.00, change_pct: 0.0 },
+                    { period: "6 meses después", price: 107.20, change_pct: 46.85 },
+                    { period: "1 año después", price: 121.40, change_pct: 66.30 },
+                    { period: "1.5 años después", price: 123.50, change_pct: 69.18 },
+                    { period: "2 años después", price: 128.90, change_pct: 76.58 },
+                    { period: "2.5 años después", price: 108.50, change_pct: 48.63 },
+                    { period: "3 años después", price: 113.40, change_pct: 55.34 },
+                    { period: "4 años después", price: 106.20, change_pct: 45.48 },
+                    { period: "5 años después", price: 119.80, change_pct: 64.11 },
+                    { period: "5.5 años después", price: 95.30, change_pct: 30.55 },
+                    { period: "Actual (Nov 2025)", price: 90.50, change_pct: 23.97 }
+                ]
+            },
+            {
+                ticker: "EDPR",
+                name: "EDP Renováveis",
+                ceo: "Miguel Stilwell d'Andrade",
+                appointment_date: "19/01/2021",
+                currency: "EUR",
+                price_at_appointment: 23.50,
+                price_current: 11.68,
+                total_change_pct: -50.30,
+                chart_color: "#2ECC71",
+                chart_data: [
+                    { date: "2021-01-19", price: 23.68 },
+                    { date: "2021-01-20", price: 23.85 },
+                    { date: "2021-01-21", price: 23.70 },
+                    { date: "2021-01-22", price: 23.93 },
+                    { date: "2021-01-25", price: 24.05 },
+                    { date: "2021-01-26", price: 23.71 },
+                    { date: "2021-01-27", price: 24.39 },
+                    { date: "2021-01-28", price: 24.15 },
+                    { date: "2021-01-29", price: 23.76 },
+                    { date: "2021-02-01", price: 24.10 },
+                    { date: "2021-07-19", price: 19.82 },
+                    { date: "2022-01-19", price: 19.21 },
+                    { date: "2022-07-19", price: 17.45 },
+                    { date: "2023-01-19", price: 20.41 },
+                    { date: "2023-07-19", price: 18.92 },
+                    { date: "2024-01-19", price: 16.35 },
+                    { date: "2024-07-19", price: 13.87 },
+                    { date: "2025-01-19", price: 12.45 },
+                    { date: "2025-11-17", price: 11.68 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 13.80, change_pct: -41.28 },
+                    { period: "Nombramiento (Ene-21)", price: 23.50, change_pct: 0.0 },
+                    { period: "6 meses después", price: 19.82, change_pct: -15.66 },
+                    { period: "1 año después", price: 19.21, change_pct: -18.26 },
+                    { period: "1.5 años después", price: 17.45, change_pct: -25.74 },
+                    { period: "2 años después", price: 20.41, change_pct: -13.15 },
+                    { period: "2.5 años después", price: 18.92, change_pct: -19.49 },
+                    { period: "3 años después", price: 16.35, change_pct: -30.43 },
+                    { period: "3.5 años después", price: 13.87, change_pct: -40.98 },
+                    { period: "4 años después", price: 12.45, change_pct: -47.02 },
+                    { period: "Actual (Nov 2025)", price: 11.68, change_pct: -50.30 }
+                ]
+            },
+            {
+                ticker: "AES",
+                name: "The AES Corporation",
+                ceo: "Andrés Gluski",
+                appointment_date: "15/01/2011",
+                currency: "USD",
+                price_at_appointment: 12.99,
+                price_current: 13.91,
+                total_change_pct: 7.08,
+                chart_color: "#EA6B35",
+                chart_data: [
+                    { date: "2011-01-15", price: 12.99 },
+                    { date: "2011-02-15", price: 13.15 },
+                    { date: "2011-03-15", price: 12.87 },
+                    { date: "2011-04-15", price: 13.23 },
+                    { date: "2011-07-15", price: 12.45 },
+                    { date: "2012-01-15", price: 13.02 },
+                    { date: "2013-01-15", price: 12.67 },
+                    { date: "2014-01-15", price: 13.54 },
+                    { date: "2015-01-15", price: 13.50 },
+                    { date: "2016-01-15", price: 11.23 },
+                    { date: "2017-01-15", price: 12.89 },
+                    { date: "2018-01-15", price: 12.34 },
+                    { date: "2019-01-15", price: 13.76 },
+                    { date: "2020-01-15", price: 13.20 },
+                    { date: "2021-01-15", price: 22.45 },
+                    { date: "2022-01-15", price: 23.67 },
+                    { date: "2023-01-15", price: 27.89 },
+                    { date: "2024-01-15", price: 18.34 },
+                    { date: "2025-01-15", price: 14.56 },
+                    { date: "2025-11-14", price: 13.91 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 11.45, change_pct: -11.86 },
+                    { period: "Nombramiento (Ene-11)", price: 12.99, change_pct: 0.0 },
+                    { period: "6 meses después", price: 12.45, change_pct: -4.16 },
+                    { period: "1 año después", price: 13.02, change_pct: 0.23 },
+                    { period: "2 años después", price: 12.67, change_pct: -2.46 },
+                    { period: "3 años después", price: 13.54, change_pct: 4.23 },
+                    { period: "5 años después", price: 11.23, change_pct: -13.55 },
+                    { period: "8 años después", price: 13.76, change_pct: 5.93 },
+                    { period: "10 años después", price: 22.45, change_pct: 72.83 },
+                    { period: "12 años después", price: 27.89, change_pct: 114.70 },
+                    { period: "14 años después", price: 14.56, change_pct: 12.09 },
+                    { period: "Actual (Nov 2025)", price: 13.91, change_pct: 7.08 }
+                ]
+            },
+            {
+                ticker: "NEE",
+                name: "NextEra Energy",
+                ceo: "John W. Ketchum",
+                appointment_date: "01/03/2022",
+                currency: "USD",
+                price_at_appointment: 77.44,
+                price_current: 85.00,
+                total_change_pct: 9.76,
+                chart_color: "#0066CC",
+                chart_data: [
+                    { date: "2022-03-01", price: 77.44 },
+                    { date: "2022-03-02", price: 77.89 },
+                    { date: "2022-03-03", price: 78.12 },
+                    { date: "2022-03-07", price: 77.65 },
+                    { date: "2022-03-14", price: 79.23 },
+                    { date: "2022-03-21", price: 80.45 },
+                    { date: "2022-03-28", price: 81.67 },
+                    { date: "2022-06-01", price: 74.32 },
+                    { date: "2022-09-01", price: 82.56 },
+                    { date: "2022-12-01", price: 78.90 },
+                    { date: "2023-03-01", price: 76.23 },
+                    { date: "2023-06-01", price: 73.45 },
+                    { date: "2023-09-01", price: 63.78 },
+                    { date: "2023-12-01", price: 59.34 },
+                    { date: "2024-03-01", price: 56.89 },
+                    { date: "2024-06-01", price: 68.45 },
+                    { date: "2024-09-01", price: 75.23 },
+                    { date: "2024-12-01", price: 77.90 },
+                    { date: "2025-03-01", price: 81.34 },
+                    { date: "2025-06-01", price: 83.67 },
+                    { date: "2025-09-01", price: 84.12 },
+                    { date: "2025-11-17", price: 85.00 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 84.23, change_pct: 8.77 },
+                    { period: "Nombramiento (Mar-22)", price: 77.44, change_pct: 0.0 },
+                    { period: "6 meses después", price: 82.56, change_pct: 6.61 },
+                    { period: "1 año después", price: 76.23, change_pct: -1.56 },
+                    { period: "1.5 años después", price: 73.45, change_pct: -5.15 },
+                    { period: "2 años después", price: 56.89, change_pct: -26.52 },
+                    { period: "2.5 años después", price: 68.45, change_pct: -11.61 },
+                    { period: "3 años después", price: 81.34, change_pct: 5.04 },
+                    { period: "3.5 años después", price: 83.67, change_pct: 8.05 },
+                    { period: "Actual (Nov 2025)", price: 85.00, change_pct: 9.76 }
+                ]
+            },
+            {
+                ticker: "ANA",
+                name: "ACCIONA (Energía)",
+                ceo: "Arantza Ezpeleta",
+                appointment_date: "01/04/2025",
+                currency: "EUR",
+                price_at_appointment: 121.00,
+                price_current: 181.70,
+                total_change_pct: 50.17,
+                chart_color: "#00A878",
+                chart_data: [
+                    { date: "2025-04-01", price: 121.00 },
+                    { date: "2025-04-02", price: 123.45 },
+                    { date: "2025-04-03", price: 122.80 },
+                    { date: "2025-04-07", price: 125.60 },
+                    { date: "2025-04-14", price: 128.90 },
+                    { date: "2025-04-21", price: 132.45 },
+                    { date: "2025-04-28", price: 135.20 },
+                    { date: "2025-05-05", price: 138.70 },
+                    { date: "2025-05-12", price: 142.30 },
+                    { date: "2025-05-19", price: 139.80 },
+                    { date: "2025-05-26", price: 143.50 },
+                    { date: "2025-06-02", price: 145.50 },
+                    { date: "2025-06-16", price: 151.20 },
+                    { date: "2025-07-01", price: 156.80 },
+                    { date: "2025-08-01", price: 163.40 },
+                    { date: "2025-09-01", price: 170.20 },
+                    { date: "2025-10-01", price: 176.50 },
+                    { date: "2025-11-01", price: 179.80 },
+                    { date: "2025-11-14", price: 181.70 }
+                ],
+                timeline: [
+                    { period: "1 mes antes", price: 115.60, change_pct: -4.46 },
+                    { period: "Nombramiento (Abr-25)", price: 121.00, change_pct: 0.0 },
+                    { period: "1 mes después", price: 135.20, change_pct: 11.74 },
+                    { period: "3 meses después", price: 156.80, change_pct: 29.59 },
+                    { period: "6 meses después", price: 176.50, change_pct: 45.87 },
+                    { period: "Actual (Nov 2025)", price: 181.70, change_pct: 50.17 }
+                ]
+            },
+            {
+                ticker: "ENEL",
+                name: "Enel SpA",
+                ceo: "Flavio Cattaneo",
+                appointment_date: "10/05/2023",
+                currency: "EUR",
+                price_at_appointment: 6.45,
+                price_current: 8.63,
+                total_change_pct: 33.80,
+                chart_color: "#E74C3C",
+                chart_data: [
+                    { date: "2023-05-10", price: 6.45 },
+                    { date: "2023-07-10", price: 6.72 },
+                    { date: "2023-09-10", price: 6.58 },
+                    { date: "2023-12-10", price: 7.05 },
+                    { date: "2024-03-10", price: 7.40 },
+                    { date: "2024-06-10", price: 7.85 },
+                    { date: "2024-09-10", price: 8.15 },
+                    { date: "2024-12-10", price: 8.38 },
+                    { date: "2025-03-10", price: 8.52 },
+                    { date: "2025-06-10", price: 8.65 },
+                    { date: "2025-11-17", price: 8.63 }
+                ],
+                timeline: [
+                    { period: "6 meses antes", price: 5.92, change_pct: -8.22 },
+                    { period: "Nombramiento (May-23)", price: 6.45, change_pct: 0.0 },
+                    { period: "6 meses después", price: 7.05, change_pct: 9.30 },
+                    { period: "1 año después", price: 7.40, change_pct: 14.73 },
+                    { period: "1.5 años después", price: 7.85, change_pct: 21.71 },
+                    { period: "2 años después", price: 8.52, change_pct: 32.09 },
+                    { period: "2.5 años después", price: 8.65, change_pct: 34.11 },
+                    { period: "Actual (Nov 2025)", price: 8.63, change_pct: 33.80 }
+                ]
+            }
+        ];
+
+        function formatPrice(price, currency) {
+            const symbol = currency === 'USD' ? '$' : '€';
+            return `${symbol}${price.toFixed(2)}`;
+        }
+
+        function formatChange(change) {
+            const sign = change > 0 ? '+' : '';
+            return `${sign}${change.toFixed(2)}%`;
+        }
+
+        function getChangeClass(change) {
+            if (change > 0) return 'positive';
+            if (change < 0) return 'negative';
+            return 'neutral';
+        }
+
+        function getArrow(change) {
+            if (change > 0) return '▲';
+            if (change < 0) return '▼';
+            return '●';
+        }
+
+        function generateSixMonthData(company) {
+            const appointmentDate = new Date(company.chart_data[0].date);
+            const today = new Date('2025-11-17');
+            const sixMonthsMs = 6 * 30.44 * 24 * 60 * 60 * 1000;
+            
+            const dataPoints = [];
+            let currentDate = new Date(appointmentDate);
+            
+            while (currentDate <= today) {
+                const existingPoint = company.chart_data.find(d => {
+                    const pointDate = new Date(d.date);
+                    return Math.abs(pointDate - currentDate) < 15 * 24 * 60 * 60 * 1000;
+                });
+                
+                if (existingPoint) {
+                    dataPoints.push(existingPoint);
+                } else {
+                    const prevPoint = dataPoints[dataPoints.length - 1];
+                    const nextPoint = company.chart_data.find(d => new Date(d.date) > currentDate);
+                    
+                    if (prevPoint && nextPoint) {
+                        const prevDate = new Date(prevPoint.date);
+                        const nextDate = new Date(nextPoint.date);
+                        const ratio = (currentDate - prevDate) / (nextDate - prevDate);
+                        const interpolatedPrice = prevPoint.price + (nextPoint.price - prevPoint.price) * ratio;
+                        
+                        dataPoints.push({
+                            date: currentDate.toISOString().split('T')[0],
+                            price: interpolatedPrice
+                        });
+                    }
+                }
+                
+                currentDate = new Date(currentDate.getTime() + sixMonthsMs);
+            }
+            
+            if (dataPoints.length === 0 || new Date(dataPoints[dataPoints.length - 1].date) < today) {
+                const lastExisting = company.chart_data[company.chart_data.length - 1];
+                if (lastExisting && new Date(lastExisting.date).getTime() >= today.getTime() - 15 * 24 * 60 * 60 * 1000) {
+                    dataPoints.push(lastExisting);
+                }
+            }
+            
+            return dataPoints;
+        }
+
+        function createChart(company, canvasId) {
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            
+            if (currentChart) {
+                currentChart.destroy();
+            }
+
+            const sixMonthData = generateSixMonthData(company);
+            const labels = sixMonthData.map(d => d.date);
+            const prices = sixMonthData.map(d => d.price);
+            
+            const appointmentDate = company.chart_data[0].date;
+            
+            currentChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: `Precio (${company.currency})`,
+                        data: prices,
+                        borderColor: company.chart_color,
+                        backgroundColor: company.chart_color + '20',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.1,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        pointBackgroundColor: company.chart_color,
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: true,
+                            labels: {
+                                color: '#e8eaed',
+                                font: {
+                                    size: 12,
+                                    family: 'FKGroteskNeue, Inter, sans-serif'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(26, 31, 53, 0.95)',
+                            titleColor: '#e8eaed',
+                            bodyColor: '#e8eaed',
+                            borderColor: company.chart_color,
+                            borderWidth: 1,
+                            padding: 12,
+                            displayColors: true,
+                            callbacks: {
+                                label: function(context) {
+                                    const symbol = company.currency === 'USD' ? '$' : '€';
+                                    return `Precio: ${symbol}${context.parsed.y.toFixed(2)}`;
+                                },
+                                title: function(context) {
+                                    return `Fecha: ${context[0].label}`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#9aa0a6',
+                                font: {
+                                    size: 11,
+                                    family: 'FKGroteskNeue, Inter, sans-serif'
+                                },
+                                maxRotation: 45,
+                                minRotation: 45,
+                                autoSkip: true,
+                                maxTicksLimit: 12
+                            }
+                        },
+                        y: {
+                            grid: {
+                                color: 'rgba(255, 255, 255, 0.05)',
+                                drawBorder: false
+                            },
+                            ticks: {
+                                color: '#9aa0a6',
+                                font: {
+                                    size: 11,
+                                    family: 'FKGroteskNeue, Inter, sans-serif'
+                                },
+                                callback: function(value) {
+                                    const symbol = company.currency === 'USD' ? '$' : '€';
+                                    return symbol + value.toFixed(0);
+                                }
+                            }
+                        }
+                    },
+                    interaction: {
+                        intersect: false,
+                        mode: 'index'
+                    }
+                }
+            });
+        }
+
+        function createCompanyContent(company) {
+            const isPositive = company.total_change_pct > 0;
+            const changeClass = getChangeClass(company.total_change_pct);
+            const arrow = getArrow(company.total_change_pct);
+
+            const timelineRows = company.timeline.map(item => {
+                const rowClass = item.period === 'Nombramiento' ? 'highlight' : 
+                                (item.period.includes('Actual') || item.period.includes('actual')) ? 'current-row' : '';
+                const changeClass = getChangeClass(item.change_pct);
+                const arrow = getArrow(item.change_pct);
+
+                return `
+                    <tr class="${rowClass}">
+                        <td class="period-cell">${item.period}</td>
+                        <td class="price-cell">${formatPrice(item.price, company.currency)}</td>
+                        <td>
+                            <div class="change-cell ${changeClass}">
+                                <span class="change-arrow">${arrow}</span>
+                                <span>${formatChange(item.change_pct)}</span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            return `
+                <div class="summary-card">
+                    <div class="summary-grid">
+                        <div class="summary-left">
+                            <div class="summary-ticker">${company.ticker}</div>
+                            <div class="summary-company-name">${company.name}</div>
+                            <div class="summary-ceo">
+                                <strong>CEO:</strong> ${company.ceo}
+                            </div>
+                            <div class="summary-ceo">
+                                <strong>Nombramiento:</strong> ${company.appointment_date}
+                            </div>
+                        </div>
+                        <div class="summary-right">
+                            <div class="summary-change-label">Retorno Total</div>
+                            <div class="summary-change-value ${changeClass}">
+                                <span class="arrow">${arrow}</span>
+                                <span>${formatChange(company.total_change_pct)}</span>
+                            </div>
+                            <div class="summary-prices">
+                                <div>Al nombramiento: <span class="price-highlight">${formatPrice(company.price_at_appointment, company.currency)}</span></div>
+                                <div>Actual: <span class="price-highlight">${formatPrice(company.price_current, company.currency)}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-card">
+                    <div class="chart-title">Evolución del Precio de la Acción</div>
+                    <div class="chart-container">
+                        <canvas id="chart${company.ticker}"></canvas>
+                    </div>
+                </div>
+
+                <div class="table-card">
+                    <div class="table-title">Cronología Detallada</div>
+                    <table class="timeline-table">
+                        <thead>
+                            <tr>
+                                <th>Período</th>
+                                <th>Precio</th>
+                                <th>Cambio %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${timelineRows}
+                        </tbody>
+                    </table>
+                </div>
+            `;
+        }
+
+        function renderCompanyContent(ticker) {
+            const company = companiesData.find(c => c.ticker === ticker);
+            if (!company) return;
+
+            const contentId = ticker.toLowerCase() + 'Content';
+            const contentDiv = document.getElementById(contentId);
+            
+            if (contentDiv.innerHTML === '') {
+                contentDiv.innerHTML = createCompanyContent(company);
+            }
+            
+            setTimeout(() => {
+                createChart(company, `chart${ticker}`);
+            }, 50);
+        }
+
+        function switchCompany(ticker) {
+            document.querySelectorAll('.company-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            const contentId = ticker.toLowerCase() + 'Content';
+            const selectedContent = document.getElementById(contentId);
+            if (selectedContent) {
+                selectedContent.classList.add('active');
+                renderCompanyContent(ticker);
+            }
+        }
+
+        document.getElementById('companySelect').addEventListener('change', function(e) {
+            switchCompany(e.target.value);
+        });
+
+        // Initialize with CEG
+        renderCompanyContent('CEG');
+
+        function switchView(viewName) {
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`.nav-tab[data-view="${viewName}"]`).classList.add('active');
+
+            document.querySelectorAll('.view-container').forEach(view => {
+                view.classList.remove('active');
+            });
+            document.getElementById(viewName + 'View').classList.add('active');
+
+            if (viewName === 'ranking') {
+                renderRanking('return');
+            }
+        }
+
+        function calculateYears(appointmentDate) {
+            const appointment = new Date(appointmentDate.split('/').reverse().join('-'));
+            const today = new Date('2025-11-17');
+            const years = (today - appointment) / (1000 * 60 * 60 * 24 * 365.25);
+            return years.toFixed(1);
+        }
+
+        function getSectorClass(sector) {
+            if (sector.includes('Tecnología')) return 'sector-tecnologia';
+            if (sector.includes('Finanzas')) return 'sector-finanzas';
+            if (sector.includes('Salud')) return 'sector-salud';
+            if (sector.includes('Energía')) return 'sector-energia';
+            if (sector.includes('Industrial')) return 'sector-industrial';
+            return 'sector-tecnologia';
+        }
+
+        function getMedal(rank) {
+            if (rank === 1) return '🥇';
+            if (rank === 2) return '🥈';
+            if (rank === 3) return '🥉';
+            return rank;
+        }
+
+        function calculateRecentChange(company) {
+            if (company.chart_data.length < 2) return 0;
+            const latest = company.chart_data[company.chart_data.length - 1].price;
+            const sixMonthsAgo = company.chart_data[Math.max(0, company.chart_data.length - 3)]?.price || company.chart_data[0].price;
+            return ((latest - sixMonthsAgo) / sixMonthsAgo) * 100;
+        }
+
+        let currentSort = 'return';
+
+        function sortRanking(sortBy) {
+            currentSort = sortBy;
+            document.querySelectorAll('.sort-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.sort-btn[data-sort="${sortBy}"]`).classList.add('active');
+            renderRanking(sortBy);
+        }
+
+        function renderRanking(sortBy) {
+            let sortedCompanies = [...rankingData];
+
+            switch(sortBy) {
+                case 'return':
+                    sortedCompanies.sort((a, b) => b.change_pct - a.change_pct);
+                    break;
+                case 'years':
+                    sortedCompanies.sort((a, b) => b.years - a.years);
+                    break;
+                case 'sector':
+                    sortedCompanies.sort((a, b) => a.sector.localeCompare(b.sector));
+                    break;
+                case 'recent':
+                    sortedCompanies.sort((a, b) => {
+                        const recentA = companiesData.find(c => c.ticker === a.ticker);
+                        const recentB = companiesData.find(c => c.ticker === b.ticker);
+                        return calculateRecentChange(recentB || {chart_data: []}) - calculateRecentChange(recentA || {chart_data: []});
+                    });
+                    break;
+            }
+
+            const tbody = document.getElementById('rankingTableBody');
+            tbody.innerHTML = sortedCompanies.map((company, index) => {
+                const displayRank = sortBy === 'return' ? company.rank : index + 1;
+                const changeClass = getChangeClass(company.change_pct);
+                const arrow = getArrow(company.change_pct);
+                const sectorClass = getSectorClass(company.sector);
+                const medal = getMedal(displayRank);
+                const rankDisplay = typeof medal === 'string' && medal.includes('🥇') ? `<span class="medal">${medal}</span>` : `<span class="rank-cell">${displayRank}</span>`;
+
+                return `
+                    <tr onclick="goToAnalysis('${company.ticker}')">
+                        <td class="rank-col">${rankDisplay}</td>
+                        <td class="company-col">
+                            <div class="company-cell">
+                                <span class="company-ticker">${company.ticker}</span>
+                                <span class="company-name-small">${company.company}</span>
+                            </div>
+                        </td>
+                        <td class="ceo-col">${company.ceo}</td>
+                        <td class="date-col">${company.appointment_date}</td>
+                        <td class="price-col">
+                            <div class="price-value">${formatPrice(company.price_initial, company.currency)}</div>
+                        </td>
+                        <td class="price-col">
+                            <div class="price-value">${formatPrice(company.price_current, company.currency)}</div>
+                        </td>
+                        <td class="change-col">
+                            <div class="change-value ${changeClass}">
+                                <span>${arrow}</span>
+                                <span>${formatChange(company.change_pct)}</span>
+                            </div>
+                        </td>
+                        <td class="years-col">
+                            <div class="years-value">${company.years}</div>
+                        </td>
+                        <td class="sector-col">
+                            <span class="sector-badge ${sectorClass}">${company.sector}</span>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function goToAnalysis(ticker) {
+            switchView('analysis');
+            document.getElementById('companySelect').value = ticker;
+            switchCompany(ticker);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
