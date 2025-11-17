@@ -1013,52 +1013,53 @@
         <label for="companySelect" class="selector-label">Seleccionar Compañía:</label>
         <select id="companySelect" class="company-selector">
             <optgroup label="⚡ Energía (6)">
-                <option value="CEG">Constellation Energy (CEG)</option>
-                <option value="NEE">NextEra Energy (NEE)</option>
-                <option value="ENEL">Enel (ENEL.MI)</option>
                 <option value="AES">AES Corporation (AES)</option>
                 <option value="CCJ">Cameco (CCJ)</option>
+                <option value="CEG">Constellation Energy (CEG)</option>
                 <option value="EDPR">EDP Renováveis (EDPR)</option>
-            </optgroup>
-            <optgroup label="🏥 Salud (4)">
-                <option value="JNJ">Johnson &amp; Johnson (JNJ)</option>
-                <option value="MRK">Merck &amp; Co. (MRK)</option>
-                <option value="UNH">UnitedHealth Group (UNH)</option>
-                <option value="PFE">Pfizer (PFE)</option>
-                <option value="ABT">Abbott Laboratories (ABT)</option>
-            </optgroup>
-            <optgroup label="💻 Tecnología (15)">
-                <option value="MSFT">Microsoft (MSFT)</option>
-                <option value="GOOGL">Alphabet (GOOGL)</option>
-                <option value="AAPL">Apple (AAPL)</option>
-                <option value="CRM">Salesforce (CRM)</option>
-                <option value="CSCO">Cisco Systems (CSCO)</option>
-                <option value="INTC">Intel (INTC)</option>
-                <option value="NVDA">NVIDIA (NVDA)</option>
-                <option value="AMZN">Amazon (AMZN)</option>
-                <option value="META">Meta Platforms (META)</option>
-                <option value="CRWD">CrowdStrike (CRWD)</option>
-                <option value="AMD">AMD (AMD)</option>
-                <option value="ORCL">Oracle (ORCL)</option>
-                <option value="TSLA">Tesla (TSLA)</option>
-                <option value="NFLX">Netflix (NFLX)</option>
-                <option value="ADBE">Adobe (ADBE)</option>
+                <option value="ENEL">Enel (ENEL.MI)</option>
+                <option value="NEE">NextEra Energy (NEE)</option>
             </optgroup>
             <optgroup label="💰 Finanzas (4)">
                 <option value="BRKA">Berkshire Hathaway (BRK.A)</option>
-                <option value="V">Visa (V)</option>
-                <option value="MA">Mastercard (MA)</option>
                 <option value="JPM">JPMorgan Chase (JPM)</option>
+                <option value="MA">Mastercard (MA)</option>
+                <option value="V">Visa (V)</option>
             </optgroup>
             <optgroup label="🏭 Industrial (2)">
-                <option value="JCI">Johnson Controls (JCI)</option>
                 <option value="CAT">Caterpillar (CAT)</option>
+                <option value="JCI">Johnson Controls (JCI)</option>
+            </optgroup>
+            <optgroup label="🏥 Salud (5)">
+                <option value="ABT">Abbott Laboratories (ABT)</option>
+                <option value="JNJ">Johnson &amp; Johnson (JNJ)</option>
+                <option value="MRK">Merck &amp; Co. (MRK)</option>
+                <option value="PFE">Pfizer (PFE)</option>
+                <option value="UNH">UnitedHealth Group (UNH)</option>
+            </optgroup>
+            <optgroup label="💻 Tecnología (15)">
+                <option value="ADBE">Adobe (ADBE)</option>
+                <option value="GOOGL">Alphabet (GOOGL)</option>
+                <option value="AMD">AMD (AMD)</option>
+                <option value="AMZN">Amazon (AMZN)</option>
+                <option value="AAPL">Apple (AAPL)</option>
+                <option value="CSCO">Cisco Systems (CSCO)</option>
+                <option value="CRWD">CrowdStrike (CRWD)</option>
+                <option value="INTC">Intel (INTC)</option>
+                <option value="META">Meta Platforms (META)</option>
+                <option value="MSFT">Microsoft (MSFT)</option>
+                <option value="NFLX">Netflix (NFLX)</option>
+                <option value="NVDA">NVIDIA (NVDA)</option>
+                <option value="ORCL">Oracle (ORCL)</option>
+                <option value="CRM">Salesforce (CRM)</option>
+                <option value="TSLA">Tesla (TSLA)</option>
             </optgroup>
         </select>
     </div>
 
     <div class="content-section">
-        <div id="cegContent" class="company-content active"></div>
+        <div id="aesContent" class="company-content active"></div>
+        <div id="cegContent" class="company-content"></div>
         <div id="neeContent" class="company-content"></div>
         <div id="enelContent" class="company-content"></div>
         <div id="aesContent" class="company-content"></div>
@@ -1199,8 +1200,8 @@
             { rank: 27, ceo: "Lip-Bu Tan", company: "Intel", ticker: "INTC", sector: "Tecnología", appointment_date: "18/03/2025", years: 1, price_initial: 28.50, price_current: 26.30, change_pct: -7.72, currency: "USD" },
             { rank: 28, ceo: "Stephen Hemsley", company: "UnitedHealth Group", ticker: "UNH", sector: "Salud", appointment_date: "01/05/2025", years: 1, price_initial: 475.00, price_current: 420.00, change_pct: -11.58, currency: "USD" },
             { rank: 29, ceo: "Albert Bourla", company: "Pfizer", ticker: "PFE", sector: "Salud", appointment_date: "01/01/2019", years: 7, price_initial: 36.60, price_current: 28.50, change_pct: -22.13, currency: "USD" },
-            { rank: 30, ceo: "Andy Jassy", company: "Amazon", ticker: "AMZN", sector: "Tecnología", appointment_date: "01/07/2021", years: 5, price_initial: 3250.00, price_current: 195.00, change_pct: -40.00, currency: "USD" },
-            { rank: 31, ceo: "Ted Sarandos", company: "Netflix", ticker: "NFLX", sector: "Tecnología", appointment_date: "01/07/2020", years: 5, price_initial: 542.00, price_current: 285.00, change_pct: -47.42, currency: "USD" },
+            { rank: 21, ceo: "Andy Jassy", company: "Amazon", ticker: "AMZN", sector: "Tecnología", appointment_date: "01/07/2021", years: 4, price_initial: 171.65, price_current: 232.18, change_pct: 35.26, currency: "USD" },
+            { rank: 11, ceo: "Ted Sarandos", company: "Netflix", ticker: "NFLX", sector: "Tecnología", appointment_date: "01/07/2020", years: 5, price_initial: 48.56, price_current: 110.57, change_pct: 127.70, currency: "USD" },
             { rank: 32, ceo: "Miguel Stilwell d'Andrade", company: "EDP Renováveis", ticker: "EDPR", sector: "Energía", appointment_date: "19/01/2021", years: 5, price_initial: 23.50, price_current: 11.68, change_pct: -50.30, currency: "EUR" }
         ];
 
@@ -1269,39 +1270,39 @@
                 ceo: "Ted Sarandos",
                 appointment_date: "01/07/2020",
                 currency: "USD",
-                price_at_appointment: 542.00,
-                price_current: 285.00,
-                total_change_pct: -47.42,
+                price_at_appointment: 48.56,
+                price_current: 110.57,
+                total_change_pct: 127.70,
                 chart_color: "#E50914",
                 chart_data: [
-                    { date: "2020-01-01", price: 335.00 },
-                    { date: "2020-07-01", price: 542.00 },
-                    { date: "2021-01-01", price: 528.00 },
-                    { date: "2021-07-01", price: 520.00 },
-                    { date: "2022-01-01", price: 380.00 },
-                    { date: "2022-07-01", price: 175.00 },
-                    { date: "2023-01-01", price: 305.00 },
-                    { date: "2023-07-01", price: 445.00 },
-                    { date: "2024-01-01", price: 485.00 },
-                    { date: "2024-07-01", price: 625.00 },
-                    { date: "2025-01-01", price: 610.00 },
-                    { date: "2025-07-01", price: 590.00 },
-                    { date: "2025-11-17", price: 285.00 }
+                    { date: "2020-01-01", price: 33.50 },
+                    { date: "2020-07-01", price: 48.56 },
+                    { date: "2021-01-01", price: 52.80 },
+                    { date: "2021-07-01", price: 52.00 },
+                    { date: "2022-01-01", price: 59.80 },
+                    { date: "2022-07-01", price: 17.50 },
+                    { date: "2023-01-01", price: 30.50 },
+                    { date: "2023-07-01", price: 44.50 },
+                    { date: "2024-01-01", price: 48.50 },
+                    { date: "2024-07-01", price: 62.50 },
+                    { date: "2025-01-01", price: 95.00 },
+                    { date: "2025-07-01", price: 105.00 },
+                    { date: "2025-11-17", price: 110.57 }
                 ],
                 timeline: [
-                    { period: "6 meses antes", price: 335.00, change_pct: -38.19 },
-                    { period: "Nombramiento (Jul-20)", price: 542.00, change_pct: 0.0 },
-                    { period: "6 meses después", price: 528.00, change_pct: -2.58 },
-                    { period: "1 año después", price: 520.00, change_pct: -4.06 },
-                    { period: "1.5 años después", price: 380.00, change_pct: -29.89 },
-                    { period: "2 años después", price: 175.00, change_pct: -67.71 },
-                    { period: "2.5 años después", price: 305.00, change_pct: -43.73 },
-                    { period: "3 años después", price: 445.00, change_pct: -17.90 },
-                    { period: "3.5 años después", price: 485.00, change_pct: -10.52 },
-                    { period: "4 años después", price: 625.00, change_pct: 15.31 },
-                    { period: "4.5 años después", price: 610.00, change_pct: 12.55 },
-                    { period: "5 años después", price: 590.00, change_pct: 8.86 },
-                    { period: "Actual (Nov 2025)", price: 285.00, change_pct: -47.42 }
+                    { period: "6 meses antes", price: 33.50, change_pct: -31.02 },
+                    { period: "Nombramiento (Jul-20)", price: 48.56, change_pct: 0.0 },
+                    { period: "6 meses después", price: 52.80, change_pct: 8.73 },
+                    { period: "1 año después", price: 52.00, change_pct: 7.08 },
+                    { period: "1.5 años después", price: 59.80, change_pct: 23.15 },
+                    { period: "2 años después", price: 17.50, change_pct: -63.97 },
+                    { period: "2.5 años después", price: 30.50, change_pct: -37.18 },
+                    { period: "3 años después", price: 44.50, change_pct: -8.36 },
+                    { period: "3.5 años después", price: 48.50, change_pct: -0.12 },
+                    { period: "4 años después", price: 62.50, change_pct: 28.71 },
+                    { period: "4.5 años después", price: 95.00, change_pct: 95.62 },
+                    { period: "5 años después", price: 105.00, change_pct: 116.22 },
+                    { period: "Actual (Nov 2025)", price: 110.57, change_pct: 127.70 }
                 ]
             },
             {
@@ -1678,35 +1679,35 @@
                 ceo: "Andy Jassy",
                 appointment_date: "01/07/2021",
                 currency: "USD",
-                price_at_appointment: 3250.00,
-                price_current: 195.00,
-                total_change_pct: -40.00,
+                price_at_appointment: 171.65,
+                price_current: 232.18,
+                total_change_pct: 35.26,
                 chart_color: "#FF9900",
                 chart_data: [
-                    { date: "2021-07-01", price: 3250.00 },
-                    { date: "2021-10-01", price: 3380.00 },
-                    { date: "2022-01-01", price: 3300.00 },
-                    { date: "2022-04-01", price: 2800.00 },
-                    { date: "2022-07-01", price: 2200.00 },
-                    { date: "2022-10-01", price: 1850.00 },
-                    { date: "2023-01-01", price: 2100.00 },
-                    { date: "2023-07-01", price: 2600.00 },
-                    { date: "2024-01-01", price: 2900.00 },
-                    { date: "2024-07-01", price: 3100.00 },
-                    { date: "2025-01-01", price: 3050.00 },
-                    { date: "2025-07-01", price: 195.00 },
-                    { date: "2025-11-17", price: 195.00 }
+                    { date: "2021-01-01", price: 155.00 },
+                    { date: "2021-07-01", price: 171.65 },
+                    { date: "2022-01-01", price: 165.00 },
+                    { date: "2022-07-01", price: 110.00 },
+                    { date: "2023-01-01", price: 84.00 },
+                    { date: "2023-07-01", price: 130.00 },
+                    { date: "2024-01-01", price: 145.00 },
+                    { date: "2024-07-01", price: 155.00 },
+                    { date: "2025-01-01", price: 203.00 },
+                    { date: "2025-07-01", price: 225.00 },
+                    { date: "2025-11-17", price: 232.18 }
                 ],
                 timeline: [
-                    { period: "Nombramiento (Jul-21)", price: 3250.00, change_pct: 0.0 },
-                    { period: "6 meses después", price: 3300.00, change_pct: 1.54 },
-                    { period: "1 año después", price: 2200.00, change_pct: -32.31 },
-                    { period: "1.5 años después", price: 2100.00, change_pct: -35.38 },
-                    { period: "2 años después", price: 2600.00, change_pct: -20.00 },
-                    { period: "2.5 años después", price: 2900.00, change_pct: -10.77 },
-                    { period: "3 años después", price: 3100.00, change_pct: -4.62 },
-                    { period: "4 años después", price: 195.00, change_pct: -94.00 },
-                    { period: "Actual (Nov 2025)", price: 195.00, change_pct: -40.00 }
+                    { period: "6 meses antes", price: 155.00, change_pct: -9.70 },
+                    { period: "Nombramiento (Jul-21)", price: 171.65, change_pct: 0.0 },
+                    { period: "6 meses después", price: 165.00, change_pct: -3.87 },
+                    { period: "1 año después", price: 110.00, change_pct: -35.92 },
+                    { period: "1.5 años después", price: 84.00, change_pct: -51.06 },
+                    { period: "2 años después", price: 130.00, change_pct: -24.26 },
+                    { period: "2.5 años después", price: 145.00, change_pct: -15.52 },
+                    { period: "3 años después", price: 155.00, change_pct: -9.70 },
+                    { period: "3.5 años después", price: 203.00, change_pct: 18.26 },
+                    { period: "4 años después", price: 225.00, change_pct: 31.08 },
+                    { period: "Actual (Nov 2025)", price: 232.18, change_pct: 35.26 }
                 ]
             },
             {
@@ -2934,8 +2935,8 @@
             switchCompany(e.target.value);
         });
 
-        // Initialize with CEG
-        renderCompanyContent('CEG');
+        // Initialize with AES (first alphabetically in Energía)
+        renderCompanyContent('AES');
 
         function switchView(viewName) {
             document.querySelectorAll('.nav-tab').forEach(tab => {
